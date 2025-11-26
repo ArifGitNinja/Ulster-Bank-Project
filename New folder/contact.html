@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Ulster Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6E0C89;
+            --secondary-color: #E6007E;
+            --accent-color: #FF9900;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --text-color: #333333;
+            --white: #FFFFFF;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --gray-dark: #6c757d;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c9006b;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 8px;
+            top: 100%;
+            left: 0;
+            padding: 10px 0;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Contact Hero */
+        .contact-hero {
+            background: linear-gradient(rgba(110, 12, 137, 0.85), rgba(110, 12, 137, 0.85)), url('https://images.unsplash.com/photo-1563013546-7e5c7d0e6c6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .contact-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .contact-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Contact Options */
+        .contact-options {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .option-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            padding: 40px 30px;
+            border: 1px solid var(--gray-medium);
+        }
+        
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .option-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .option-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .option-card p {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        /* Contact Form */
+        .contact-form-section {
+            padding: 80px 0;
+            background-color: var(--gray-light);
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Live Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chat-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .chat-container {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chat-container.active {
+            display: flex;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-header h3 {
+            font-size: 1.2rem;
+        }
+        
+        .close-chat {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .message.bot {
+            background-color: var(--gray-light);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message.user {
+            background-color: var(--primary-color);
+            color: var(--white);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--gray-medium);
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+        
+        .chat-input button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .chat-input button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--gray-medium);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background-color: var(--gray-light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .chat-container {
+                width: 300px;
+                height: 450px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chat-container {
+                width: 280px;
+                right: -20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span>Contact us: 0800 231 232</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="on-bank.html">Help & Support</a>
+                    <a href="loc.html">Branch Locator</a>
+                    <a href="contact.html" class="active">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <!-- Ulster Bank Logo -->
+                    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="25" r="25" fill="#6E0C89"/>
+                        <path d="M15 15H35V35H15V15Z" fill="white" opacity="0.9"/>
+                        <path d="M25 10L35 15H15L25 10Z" fill="white" opacity="0.9"/>
+                        <path d="M25 40L15 35H35L25 40Z" fill="white" opacity="0.9"/>
+                        <path d="M15 15L25 10V40L15 35V15Z" fill="white" opacity="0.7"/>
+                        <path d="M35 15L25 10V40L35 35V15Z" fill="white" opacity="0.7"/>
+                    </svg>
+                    <h1>Ulster Bank</h1>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Banking <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="current-accounts.html">Current Accounts</a>
+                                <a href="savings-accounts.html">Savings Accounts</a>
+                                <a href="credit-card.html">Credit Cards</a>
+                                <a href="loans.html">Loans</a>
+                                <a href="mortgages.html">Mortgages</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Insurance <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="car-insurance.html">Car Insurance</a>
+                                <a href="home-insurance.html">Home Insurance</a>
+                                <a href="life-insurance.html">Life Insurance</a>
+                                <a href="travel-insurance.html">Travel Insurance</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Investments <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="sav-in.html">Savings & Investments</a>
+                                <a href="pension.html">Pensions</a>
+                                <a href="stock.html">Stocks & Shares</a>
+                            </div>
+                        </li>
+                        <li><a href="busi-bank.html">Business Banking</a></li>
+                        <li class="dropdown">
+                            <a href="on-bank.html">Help & Support <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="on-bank.html">Online Banking Help</a>
+                                <a href="sec-cen.html">Security Centre</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="dig-bank.html" class="btn">Digital Banking</a>
+                    <a href="register.html" class="btn btn-secondary">Register</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We're here to help. Get in touch with Ulster Bank through any of our contact channels.</p>
+            <a href="#contact-options" class="btn btn-secondary">View Contact Options</a>
+        </div>
+    </section>
+
+    <!-- Contact Options -->
+    <section class="contact-options" id="contact-options">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Can We Help You?</h2>
+                <p>Choose the contact method that works best for you</p>
+            </div>
+            
+            <div class="options-grid">
+                <div class="option-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Phone Support</h3>
+                    <p>Speak directly with our customer service team for immediate assistance.</p>
+                    <p><strong>Personal Banking:</strong> 0800 231 232</p>
+                    <p><strong>Business Banking:</strong> 0800 232 233</p>
+                    <p><strong>24/7 Lost Cards:</strong> 0800 234 567</p>
+                    <a href="#" class="btn">Call Now</a>
+                </div>
+                
+                <div class="option-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Live Chat</h3>
+                    <p>Chat with our support team in real-time for quick answers to your questions.</p>
+                    <p><strong>Available:</strong> Mon-Fri 8am-10pm, Sat 9am-6pm, Sun 10am-4pm</p>
+                    <button class="btn" id="openChatBtn">Start Live Chat</button>
+                </div>
+                
+                <div class="option-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>Send us a message and we'll respond within 24 hours during business days.</p>
+                    <p><strong>General Inquiries:</strong> help@ulsterbank.co.uk</p>
+                    <p><strong>Support:</strong> support@ulsterbank.co.uk</p>
+                    <a href="#contact-form" class="btn">Send Email</a>
+                </div>
+                
+                <div class="option-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit a Branch</h3>
+                    <p>Visit one of our branches for face-to-face assistance with your banking needs.</p>
+                    <p><strong>Find your nearest branch</strong> with our branch locator tool.</p>
+                    <a href="loc.html" class="btn">Find a Branch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="container">
+            <div class="section-title">
+                <h2>Send Us a Message</h2>
+                <p>Fill out the form below and we'll get back to you as soon as possible</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="account">Account Inquiry</option>
+                            <option value="card">Card Services</option>
+                            <option value="loan">Loans & Mortgages</option>
+                            <option value="insurance">Insurance</option>
+                            <option value="investment">Investments</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common questions</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I report a lost or stolen card?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If your card is lost or stolen, please call our 24/7 helpline immediately at 0800 234 567. We will cancel your card and arrange for a replacement to be sent to you.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What should I do if I suspect fraudulent activity?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you notice any suspicious transactions or believe your account has been compromised, contact us immediately at 0800 231 232. Our fraud team is available 24/7 to assist you.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can I reset my online banking password?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reset your password by clicking on the "Forgot Password" link on the online banking login page. Alternatively, you can call our support team at 0800 231 232 for assistance.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What documents do I need to open an account?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To open an account with Ulster Bank, you'll typically need proof of identity (passport or driving license) and proof of address (utility bill or bank statement from another bank). Requirements may vary depending on the account type.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I update my personal details?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can update your personal details through online banking, by visiting any Ulster Bank branch, or by calling our customer service team at 0800 231 232.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Banking</h3>
+                    <ul class="footer-links">
+                        <li><a href="current-accounts.html">Current Accounts</a></li>
+                        <li><a href="savings-accounts.html">Savings Accounts</a></li>
+                        <li><a href="credit-card.html">Credit Cards</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="mortgages.html">Mortgages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Insurance</h3>
+                    <ul class="footer-links">
+                        <li><a href="car-insurance.html">Car Insurance</a></li>
+                        <li><a href="home-insurance.html">Home Insurance</a></li>
+                        <li><a href="life-insurance.html">Life Insurance</a></li>
+                        <li><a href="travel-insurance.html">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="branch-locator.html">Branch Locator</a></li>
+                        <li><a href="on-bank.html">Online Banking Help</a></li>
+                        <li><a href="sec-cen.html">Security Centre</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ulster Bank. All rights reserved. Ulster Bank is a trading name of Ulster Bank Ireland DAC. Ulster Bank Ireland DAC is regulated by the Central Bank of Ireland.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-button" id="chatButton">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <h3>Ulster Bank Live Chat</h3>
+                <button class="close-chat" id="closeChat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    Hello! Welcome to Ulster Bank Live Chat. How can I help you today?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Live Chat Functionality
+        const chatButton = document.getElementById('chatButton');
+        const chatContainer = document.getElementById('chatContainer');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const openChatBtn = document.getElementById('openChatBtn');
+
+        // Open chat from button in contact options
+        openChatBtn.addEventListener('click', function() {
+            chatContainer.classList.add('active');
+        });
+
+        // Toggle chat window
+        chatButton.addEventListener('click', function() {
+            chatContainer.classList.toggle('active');
+        });
+
+        // Close chat window
+        closeChat.addEventListener('click', function() {
+            chatContainer.classList.remove('active');
+        });
+
+        // Send message function
+        function sendUserMessage() {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = message;
+            chatMessages.appendChild(userMessage);
+
+            // Clear input
+            chatInput.value = '';
+
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate bot response after a delay
+            setTimeout(() => {
+                const botResponse = document.createElement('div');
+                botResponse.className = 'message bot';
+                
+                // Simple response logic based on keywords
+                if (message.toLowerCase().includes('account') || message.toLowerCase().includes('balance')) {
+                    botResponse.textContent = 'I can help with account inquiries. For security reasons, I\'ll need to transfer you to a secure channel. Please call 0800 231 232 for account-specific questions.';
+                } else if (message.toLowerCase().includes('card') || message.toLowerCase().includes('lost')) {
+                    botResponse.textContent = 'If your card is lost or stolen, please call our 24/7 helpline immediately at 0800 234 567. We can cancel your card and arrange a replacement.';
+                } else if (message.toLowerCase().includes('loan') || message.toLowerCase().includes('mortgage')) {
+                    botResponse.textContent = 'For information about loans or mortgages, I can connect you with one of our specialists. Would you like me to schedule a callback?';
+                } else if (message.toLowerCase().includes('hours') || message.toLowerCase().includes('open')) {
+                    botResponse.textContent = 'Our phone support is available Mon-Fri 8am-10pm, Sat 9am-6pm, and Sun 10am-4pm. Branch hours vary by location.';
+                } else {
+                    botResponse.textContent = 'Thank you for your message. One of our customer service representatives will be with you shortly. Is there anything specific I can help with in the meantime?';
+                }
+                
+                chatMessages.appendChild(botResponse);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+
+        // Send message on button click
+        sendMessage.addEventListener('click', sendUserMessage);
+
+        // Send message on Enter key
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendUserMessage();
+            }
+        });
+
+        // Auto-open chat after 30 seconds if not already open
+        setTimeout(() => {
+            if (!chatContainer.classList.contains('active')) {
+                const notification = document.createElement('div');
+                notification.className = 'message bot';
+                notification.textContent = 'Hi there! Need help with anything? I\'m here to assist you.';
+                chatMessages.appendChild(notification);
+                chatContainer.classList.add('active');
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

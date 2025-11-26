@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Banking - Ulster Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6E0C89;
+            --secondary-color: #E6007E;
+            --accent-color: #FF9900;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --text-color: #333333;
+            --white: #FFFFFF;
+            --success-color: #28a745;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c9006b;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(110, 12, 137, 0.8), rgba(110, 12, 137, 0.8)), url('https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .feature-content {
+            padding: 20px;
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* App Download Section */
+        .app-download {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .app-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .app-info h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .app-info ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .app-info li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .app-info li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .app-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .app-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .app-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .app-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: var(--dark-color);
+            color: var(--white);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            min-width: 160px;
+        }
+        
+        .app-btn:hover {
+            background-color: #555;
+        }
+        
+        .app-btn i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+        }
+        
+        .app-btn-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        
+        .app-btn-text small {
+            font-size: 0.7rem;
+        }
+        
+        .app-btn-text div {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        
+        /* Security Section */
+        .security-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .security-item {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .security-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial-text:before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary-color);
+            position: absolute;
+            top: -15px;
+            left: -10px;
+            opacity: 0.3;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-question:hover {
+            background-color: #e8e8e8;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .features-grid, .security-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-buttons {
+                flex-direction: column;
+            }
+            
+            .app-btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span>Contact us: 0800 231 232</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="on-bank.html">Help & Support</a>
+                    <a href="loc.html">Branch Locator</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <!-- Ulster Bank Logo -->
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="20" fill="#6E0C89"/>
+                        <path d="M15 15H25V25H15V15Z" fill="white"/>
+                        <path d="M20 10L25 15H15L20 10Z" fill="white"/>
+                        <path d="M20 30L15 25H25L20 30Z" fill="white"/>
+                    </svg>
+                    <h1>Ulster Bank</h1>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Banking <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="current-accounts.html">Current Accounts</a>
+                                <a href="savings-accounts.html">Savings Accounts</a>
+                                <a href="credit-card.html">Credit Cards</a>
+                                <a href="loans.html">Loans</a>
+                                <a href="mortgages.html">Mortgages</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Insurance <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="car-insurance.html">Car Insurance</a>
+                                <a href="home-insurance.html">Home Insurance</a>
+                                <a href="life-insurance.html">Life Insurance</a>
+                                <a href="travel-insurance.html">Travel Insurance</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Investments <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="savings-accounts.html">Savings & Investments</a>
+                                <a href="pension.html">Pensions</a>
+                                <a href="stock.html">Stocks & Shares</a>
+                            </div>
+                        </li>
+                         <li><a href="busi-bank.html">Business Banking</a></li>
+                        <li class="dropdown">
+                            <a href="help.html">Help & Support <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="on-bank.html">Online Banking Help</a>
+                                <a href="sec-cen.html">Security Centre</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn" onclick="window.location.href='digital-banking.html'">Digital Banking</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='register.html'">Register</button>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Ulster Bank Mobile Banking</h2>
+            <p>Bank securely on the go with our award-winning mobile app. Manage your accounts, make payments, and stay in control of your finances wherever you are.</p>
+            <div class="app-buttons" style="justify-content: center; margin-top: 30px;">
+                <a href="#" class="app-btn">
+                    <i class="fab fa-apple"></i>
+                    <div class="app-btn-text">
+                        <small>Download on the</small>
+                        <div>App Store</div>
+                    </div>
+                </a>
+                <a href="#" class="app-btn">
+                    <i class="fab fa-google-play"></i>
+                    <div class="app-btn-text">
+                        <small>Get it on</small>
+                        <div>Google Play</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Everything You Need in One App</h2>
+                <p>Our mobile banking app puts the power of Ulster Bank in the palm of your hand</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>View Balances & Transactions</h3>
+                        <p>Check your account balances and view recent transactions in real-time, anytime and anywhere.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Transfer Money</h3>
+                        <p>Send money to friends, family, or businesses quickly and securely with just a few taps.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Pay Bills</h3>
+                        <p>Set up one-time or recurring payments for your bills. Never miss a payment deadline again.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Mobile Check Deposit</h3>
+                        <p>Deposit checks instantly using your phone's camera - no need to visit a branch.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Custom Alerts</h3>
+                        <p>Set up alerts for low balances, large transactions, or when deposits are made.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Find ATMs & Branches</h3>
+                        <p>Locate the nearest Ulster Bank ATMs and branches with our built-in locator.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="app-download">
+        <div class="container">
+            <div class="app-container">
+                <div class="app-info">
+                    <h2>Download Our Mobile App Today</h2>
+                    <p>Join millions of customers who bank with Ulster Bank on their mobile devices. Our app is designed to make banking simple, secure, and convenient.</p>
+                    <ul>
+                        <li>Secure login with fingerprint or face ID</li>
+                        <li>Intuitive design for easy navigation</li>
+                        <li>24/7 access to your accounts</li>
+                        <li>Quick balance without full login</li>
+                        <li>Card management and spending controls</li>
+                        <li>Investment tracking and management</li>
+                    </ul>
+                    <div class="app-buttons">
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-apple"></i>
+                            <div class="app-btn-text">
+                                <small>Download on the</small>
+                                <div>App Store</div>
+                            </div>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <div class="app-btn-text">
+                                <small>Get it on</small>
+                                <div>Google Play</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Mobile Banking App">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bank With Confidence</h2>
+                <p>Your security is our top priority</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Biometric Authentication</h3>
+                    <p>Use your fingerprint or face ID for quick and secure access to the app.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Advanced Encryption</h3>
+                    <p>All your data is protected with bank-level encryption technology.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Instant Fraud Alerts</h3>
+                    <p>Get immediate notifications for suspicious activity on your accounts.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Remote Card Control</h3>
+                    <p>Turn your card on or off, set spending limits, and report lost cards instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Discover why millions trust Ulster Bank for their mobile banking needs</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The mobile app has completely transformed how I manage my finances. I can check my balance, transfer money, and pay bills all from my phone. It's so convenient!
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SD</div>
+                        <div class="author-info">
+                            <h4>Sarah Dawson</h4>
+                            <p>Ulster Bank Customer for 5 years</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        I love the mobile check deposit feature! No more trips to the bank. The app is secure, fast, and incredibly easy to use. Highly recommended!
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Michael Johnson</h4>
+                            <p>Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        As someone who travels frequently, the Ulster Bank mobile app is a lifesaver. I can manage all my accounts no matter where I am in the world.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ER</div>
+                        <div class="author-info">
+                            <h4>Emma Roberts</h4>
+                            <p>Frequent Traveler</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our mobile banking services</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">Is the Ulster Bank mobile app free to download?</div>
+                    <div class="faq-answer">
+                        <p>Yes, the Ulster Bank mobile app is completely free to download from the Apple App Store and Google Play Store. There are no charges for using the app to manage your accounts.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What devices are compatible with the mobile banking app?</div>
+                    <div class="faq-answer">
+                        <p>Our mobile banking app is compatible with most iOS and Android devices. For iOS, you'll need iOS 12.0 or later. For Android, you'll need Android 7.0 or later.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I reset my mobile banking password?</div>
+                    <div class="faq-answer">
+                        <p>If you've forgotten your password, you can reset it directly from the app login screen by tapping "Forgot Password." You'll need to verify your identity using your registered email or phone number.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is mobile banking secure?</div>
+                    <div class="faq-answer">
+                        <p>Yes, we use industry-leading security measures including encryption, secure login methods, and fraud monitoring to protect your accounts and personal information.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I use mobile banking abroad?</div>
+                    <div class="faq-answer">
+                        <p>Yes, you can access our mobile banking services from most countries. However, we recommend using a secure Wi-Fi connection rather than public networks when abroad for added security.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Banking</h3>
+                    <ul class="footer-links">
+                        <li><a href="current-accounts.html">Current Accounts</a></li>
+                        <li><a href="savings-accounts.html">Savings Accounts</a></li>
+                        <li><a href="credit-card.html">Credit Cards</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="mortgages.html">Mortgages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Insurance</h3>
+                    <ul class="footer-links">
+                        <li><a href="car-insurance.html">Car Insurance</a></li>
+                        <li><a href="home-insurance.html">Home Insurance</a></li>
+                        <li><a href="life-insurance.html">Life Insurance</a></li>
+                        <li><a href="travel-insurance.html">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li><a href="on-bank.html">Online Banking Help</a></li>
+                        <li><a href="sec-cen.html">Security Centre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ulster Bank. All rights reserved. Ulster Bank is a trading name of Ulster Bank Ireland DAC. Ulster Bank Ireland DAC is regulated by the Central Bank of Ireland.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Mobile dropdown functionality
+        document.querySelectorAll('.dropdown > a').forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const content = this.nextElementSibling;
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

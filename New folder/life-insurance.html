@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Insurance | Ulster Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles - Same as home page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6E0C89;
+            --secondary-color: #E6007E;
+            --accent-color: #FF9900;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --text-color: #333333;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c9006b;
+        }
+        
+        /* Header Styles - Same as home page */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(110, 12, 137, 0.8), rgba(110, 12, 137, 0.8)), url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Insurance Quote Form */
+        .quote-form {
+            background-color: var(--white);
+            padding: 60px 0;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .form-group {
+            flex: 1 0 300px;
+            margin: 0 15px 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-submit {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Insurance Features */
+        .insurance-features {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .feature-content {
+            padding: 20px;
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Coverage Options */
+        .coverage-options {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .coverage-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .coverage-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .coverage-item {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .coverage-item h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .coverage-item .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--dark-color);
+        }
+        
+        /* Calculator Section */
+        .calculator-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calculator-results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .calculator-results.active {
+            display: block;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--primary-color);
+        }
+        
+        /* Additional Coverage Options */
+        .additional-coverage {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .coverage-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .coverage-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .coverage-card h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            background-color: var(--white);
+            padding: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            background-color: var(--white);
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Promotional Banner */
+        .promo-banner {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .promo-banner h2 {
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .modal-header h2 {
+            color: var(--primary-color);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .features-grid, .coverage-details, .coverage-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span>Contact us: 0800 231 232</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="on-bank.html">Help & Support</a>
+                    <a href="loc.html">Branch Locator</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <!-- Ulster Bank Logo -->
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="20" fill="#6E0C89"/>
+                        <path d="M15 15H25V25H15V15Z" fill="white"/>
+                        <path d="M20 10L25 15H15L20 10Z" fill="white"/>
+                        <path d="M20 30L15 25H25L20 30Z" fill="white"/>
+                    </svg>
+                    <h1>Ulster Bank</h1>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Banking <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="current-accounts.html">Current Accounts</a>
+                                <a href="savings-accounts.html">Savings Accounts</a>
+                                <a href="credit-card.html">Credit Cards</a>
+                                <a href="loans.html">Loans</a>
+                                <a href="mortgages.html">Mortgages</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="active">Insurance <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="car-insurance.html">Car Insurance</a>
+                                <a href="home-insurance.html">Home Insurance</a>
+                                <a href="life-insurance.html" class="active">Life Insurance</a>
+                                <a href="travel-insurance.html">Travel Insurance</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Investments <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="sav-in.html">Savings & Investments</a>
+                                <a href="pension.html">Pensions</a>
+                                <a href="stock.html">Stocks & Shares</a>
+                            </div>
+                        </li>
+                        <li><a href="busi-bank.html">Business Banking</a></li>
+                        <li class="dropdown">
+                            <a href="help.html">Help & Support <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="on-bank.html">Online Banking Help</a>
+                                <a href="sec-cen.html">Security Centre</a>
+                               
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                 <div class="auth-buttons">
+                    <a href="dig-bank.html" class="btn">Digital Banking</a>
+                    <a href="register.html" class="btn btn-secondary">Register</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Secure Your Family's Future</h2>
+            <p>Life insurance that provides financial protection for your loved ones when they need it most. Peace of mind for today, security for tomorrow.</p>
+            <div class="hero-buttons">
+                <button class="btn" onclick="document.getElementById('quote-form').scrollIntoView({behavior: 'smooth'})">Get a Quote</button>
+                <button class="btn btn-secondary">Existing Customer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Quote Form -->
+    <section class="quote-form" id="quote-form">
+        <div class="container">
+            <div class="form-container">
+                <h2>Get Your Life Insurance Quote</h2>
+                <form id="insuranceQuoteForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coverAmount">Cover Amount</label>
+                            <select id="coverAmount" required>
+                                <option value="">Select cover amount</option>
+                                <option value="50000">£50,000</option>
+                                <option value="100000">£100,000</option>
+                                <option value="250000">£250,000</option>
+                                <option value="500000">£500,000</option>
+                                <option value="1000000">£1,000,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="coverTerm">Cover Term</label>
+                            <select id="coverTerm" required>
+                                <option value="">Select cover term</option>
+                                <option value="10">10 years</option>
+                                <option value="15">15 years</option>
+                                <option value="20">20 years</option>
+                                <option value="25">25 years</option>
+                                <option value="30">30 years</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="smoker">Are you a smoker?</label>
+                            <select id="smoker" required>
+                                <option value="">Select option</option>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="health">General Health</label>
+                            <select id="health" required>
+                                <option value="">Select health status</option>
+                                <option value="excellent">Excellent</option>
+                                <option value="good">Good</option>
+                                <option value="average">Average</option>
+                                <option value="poor">Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn">Get Quote</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Features -->
+    <section class="insurance-features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Ulster Bank Life Insurance?</h2>
+                <p>Our life insurance offers comprehensive protection with benefits designed to give you and your family peace of mind.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Financial Security</h3>
+                        <p>Ensure your family's financial stability by providing a tax-free lump sum to cover mortgage payments, living expenses, and future needs.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Critical Illness Cover</h3>
+                        <p>Optional cover that pays out if you're diagnosed with a specified critical illness, helping with medical costs and lifestyle adjustments.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Flexible Premiums</h3>
+                        <p>Choose from level or decreasing term insurance with premiums that fit your budget and coverage that matches your needs.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Mortgage Protection</h3>
+                        <p>Ensure your family can stay in their home by covering the outstanding mortgage balance if the unexpected happens.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Medical Underwriting</h3>
+                        <p>We offer both medically underwritten and non-medical policies to suit different health circumstances and coverage needs.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Trust Options</h3>
+                        <p>Place your policy in trust to ensure the payout goes directly to your chosen beneficiaries, avoiding inheritance tax delays.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Options -->
+    <section class="coverage-options">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Life Insurance Options</h2>
+                <p>Choose the type of life insurance that's right for your circumstances and family needs</p>
+            </div>
+            <div class="coverage-tabs">
+                <button class="tab-btn active" data-tab="term">Term Life Insurance</button>
+                <button class="tab-btn" data-tab="whole">Whole of Life</button>
+                <button class="tab-btn" data-tab="critical">Critical Illness</button>
+            </div>
+            <div class="tab-content active" id="term">
+                <div class="coverage-details">
+                    <div class="coverage-item">
+                        <h3>Level Term</h3>
+                        <p>Fixed payout amount throughout the policy term</p>
+                        <div class="price">From £15/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Fixed payout amount</li>
+                            <li>Cover for 10-40 years</li>
+                            <li>Ideal for inheritance planning</li>
+                            <li>Premiums fixed for term</li>
+                            <li>Option to add critical illness</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Decreasing Term</h3>
+                        <p>Payout decreases over time, ideal for mortgages</p>
+                        <div class="price">From £10/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Payout decreases over time</li>
+                            <li>Matches mortgage repayment</li>
+                            <li>Most affordable option</li>
+                            <li>Premiums fixed for term</li>
+                            <li>Family income benefit option</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Family Income Benefit</h3>
+                        <p>Regular income payments instead of lump sum</p>
+                        <div class="price">From £12/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Regular monthly payments</li>
+                            <li>Income replacement focus</li>
+                            <li>Tax-free payments to family</li>
+                            <li>Indexation option available</li>
+                            <li>Budget-friendly protection</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="whole">
+                <div class="coverage-details">
+                    <div class="coverage-item">
+                        <h3>Standard Whole Life</h3>
+                        <p>Lifetime cover with guaranteed payout</p>
+                        <div class="price">From £30/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Cover for entire lifetime</li>
+                            <li>Guaranteed payout</li>
+                            <li>Ideal for inheritance tax</li>
+                            <li>Fixed or reviewable premiums</li>
+                            <li>Investment element</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Over 50s Plan</h3>
+                        <p>Guaranteed acceptance for ages 50-80</p>
+                        <div class="price">From £20/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>No medical questions</li>
+                            <li>Guaranteed acceptance</li>
+                            <li>Fixed monthly payments</li>
+                            <li>Cover after 12-24 months</li>
+                            <li>Ideal for funeral costs</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="critical">
+                <div class="coverage-details">
+                    <div class="coverage-item">
+                        <h3>Critical Illness Cover</h3>
+                        <p>Payout on diagnosis of specified conditions</p>
+                        <div class="price">From £25/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Covers 40+ conditions</li>
+                            <li>Includes cancer, heart attack</li>
+                            <li>Tax-free lump sum payment</li>
+                            <li>Can be standalone or added</li>
+                            <li>Children's cover included</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Income Protection</h3>
+                        <p>Regular payments if unable to work due to illness</p>
+                        <div class="price">From £20/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Monthly income replacement</li>
+                            <li>Short or long-term options</li>
+                            <li>Deferred period choices</li>
+                            <li>Covers accident and sickness</li>
+                            <li>Tax-free payments</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Much Life Insurance Do You Need?</h2>
+                <p>Use our calculator to estimate the right amount of coverage for your family's needs</p>
+            </div>
+            <div class="calculator-container">
+                <form id="insuranceCalculator">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="calcIncome">Annual Income (£)</label>
+                            <input type="number" id="calcIncome" placeholder="e.g. 35000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="calcMortgage">Mortgage Balance (£)</label>
+                            <input type="number" id="calcMortgage" placeholder="e.g. 150000" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="calcDebts">Other Debts (£)</label>
+                            <input type="number" id="calcDebts" placeholder="e.g. 10000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="calcChildren">Number of Children</label>
+                            <input type="number" id="calcChildren" placeholder="e.g. 2" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="calcYears">Years of Income Replacement</label>
+                            <select id="calcYears" required>
+                                <option value="5">5 years</option>
+                                <option value="10" selected>10 years</option>
+                                <option value="15">15 years</option>
+                                <option value="20">20 years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="calcEducation">Education Costs per Child (£)</label>
+                            <input type="number" id="calcEducation" placeholder="e.g. 30000" required>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="button" class="btn" id="calculateBtn">Calculate Coverage</button>
+                    </div>
+                </form>
+                <div class="calculator-results" id="calculatorResults">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">Recommended Coverage</h3>
+                    <div class="result-item">
+                        <span>Income Replacement:</span>
+                        <span id="incomeResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Mortgage Coverage:</span>
+                        <span id="mortgageResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Debt Clearance:</span>
+                        <span id="debtResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Education Costs:</span>
+                        <span id="educationResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Final Expenses:</span>
+                        <span id="expensesResult">£10,000</span>
+                    </div>
+                    <div class="result-total">
+                        <span>Total Recommended Coverage:</span>
+                        <span id="totalResult">£0</span>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn" onclick="document.getElementById('quote-form').scrollIntoView({behavior: 'smooth'})">Get a Quote</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Coverage Options -->
+    <section class="additional-coverage">
+        <div class="container">
+            <div class="section-title">
+                <h2>Additional Protection Options</h2>
+                <p>Enhance your life insurance with these valuable add-ons</p>
+            </div>
+            <div class="coverage-grid">
+                <div class="coverage-card">
+                    <h3><i class="fas fa-plus-square"></i> Waiver of Premium</h3>
+                    <p>If you're unable to work due to illness or injury, this cover pays your premiums so your policy remains active without financial strain.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £2/month</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-child"></i> Children's Cover</h3>
+                    <p>Automatic cover for your children at no extra cost, providing a lump sum if they're diagnosed with a critical illness.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Included free with most policies</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-procedures"></i> Terminal Illness Benefit</h3>
+                    <p>Early payout if you're diagnosed with a terminal illness and have less than 12 months to live, helping with medical costs and quality of life.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Included as standard</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-user-injured"></i> Accidental Death Benefit</h3>
+                    <p>Additional payout if death occurs as a result of an accident, providing extra financial support for unexpected circumstances.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £3/month</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-balance-scale"></i> Trust Service</h3>
+                    <p>We can help you place your policy in trust at no extra cost, ensuring the payout goes directly to your chosen beneficiaries quickly and tax-efficiently.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Free service</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-sync-alt"></i> Indexation</h3>
+                    <p>Automatically increase your cover amount each year in line with inflation, ensuring your protection keeps pace with the cost of living.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £1/month</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Hear from families who have benefited from our life insurance protection</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "After my husband passed away unexpectedly, the life insurance payout from Ulster Bank meant I could stay in our family home and continue to provide for our children without financial worry. Their compassionate claims process made a difficult time much more manageable."
+                    </div>
+                    <div class="testimonial-author">- Sarah Mitchell, Belfast</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about life insurance</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How much life insurance do I need?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        A good rule of thumb is to have coverage equal to 10-15 times your annual income. However, the exact amount depends on your specific circumstances including mortgage balance, debts, number of dependents, and future education costs. Use our calculator above for a personalized estimate.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What's the difference between term and whole life insurance?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Term life insurance provides coverage for a specific period (e.g., 20 years) and pays out only if you die during that term. Whole life insurance covers you for your entire lifetime and includes an investment component, making it more expensive but guaranteeing a payout whenever you die.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Will I need a medical examination?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        It depends on the amount of coverage, your age, and health declaration. For larger policies or if you have pre-existing conditions, a medical may be required. We also offer non-medical policies with guaranteed acceptance for those aged 50-80.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I change my policy later?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, many of our policies offer flexibility. You can often increase coverage at life events like marriage or birth of a child (subject to underwriting). Some policies also allow you to convert term insurance to whole life without further medical evidence.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does the claims process take?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We aim to process straightforward claims within 10 working days of receiving all required documentation. More complex cases may take longer, but we keep beneficiaries informed throughout the process. Placing your policy in trust can help speed up payment.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <h2>Get 1 Month Free When You Take Out Life Insurance Before December 31st</h2>
+            <p>Protect your family's future and save with our limited-time offer</p>
+            <button class="btn btn-secondary" style="margin-top: 20px;">Get Your Quote Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Banking</h3>
+                    <ul class="footer-links">
+                        <li><a href="current-accounts.html">Current Accounts</a></li>
+                        <li><a href="savings-accounts.html">Savings Accounts</a></li>
+                        <li><a href="credit-card.html">Credit Cards</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="mortgages.html">Mortgages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Insurance</h3>
+                    <ul class="footer-links">
+                        <li><a href="car-insurance.html">Car Insurance</a></li>
+                        <li><a href="home-insurance.html">Home Insurance</a></li>
+                        <li><a href="life-insurance.html" class="active">Life Insurance</a></li>
+                        <li><a href="travel-insurance.html">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li><a href="#">Online Banking Help</a></li>
+                        <li><a href="#">Security Centre</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ulster Bank. All rights reserved. Ulster Bank is a trading name of Ulster Bank Ireland DAC. Ulster Bank Ireland DAC is regulated by the Central Bank of Ireland.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Digital Banking Login</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Log In</button>
+            </form>
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Not registered? <a href="#">Register for Digital Banking</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Login Modal
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+
+        loginBtn.addEventListener('click', function() {
+            loginModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, this would send the login credentials to a server
+            alert('Login functionality would be implemented here');
+            loginModal.style.display = 'none';
+        });
+
+        // Mobile dropdown functionality
+        document.querySelectorAll('.dropdown > a').forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const content = this.nextElementSibling;
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+
+        // Tab functionality for coverage options
+        document.querySelectorAll('.tab-btn').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab-btn').forEach(function(t) {
+                    t.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-content').forEach(function(c) {
+                    c.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(function(ans) {
+                    ans.classList.remove('active');
+                });
+                
+                // If the clicked answer wasn't active, open it
+                if (!isActive) {
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Insurance Quote Form Submission
+        document.getElementById('insuranceQuoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, this would send the quote request to a server
+            alert('Thank you for your life insurance quote request. We will contact you shortly with your personalized quote.');
+            this.reset();
+        });
+
+        // Insurance Calculator
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            const income = parseFloat(document.getElementById('calcIncome').value) || 0;
+            const mortgage = parseFloat(document.getElementById('calcMortgage').value) || 0;
+            const debts = parseFloat(document.getElementById('calcDebts').value) || 0;
+            const children = parseInt(document.getElementById('calcChildren').value) || 0;
+            const years = parseInt(document.getElementById('calcYears').value) || 10;
+            const education = parseFloat(document.getElementById('calcEducation').value) || 0;
+            
+            const incomeReplacement = income * years;
+            const educationCosts = children * education;
+            const finalExpenses = 10000; // Standard amount for funeral etc.
+            
+            const totalCoverage = incomeReplacement + mortgage + debts + educationCosts + finalExpenses;
+            
+            // Update results
+            document.getElementById('incomeResult').textContent = '£' + incomeReplacement.toLocaleString();
+            document.getElementById('mortgageResult').textContent = '£' + mortgage.toLocaleString();
+            document.getElementById('debtResult').textContent = '£' + debts.toLocaleString();
+            document.getElementById('educationResult').textContent = '£' + educationCosts.toLocaleString();
+            document.getElementById('totalResult').textContent = '£' + totalCoverage.toLocaleString();
+            
+            // Show results
+            document.getElementById('calculatorResults').classList.add('active');
+        });
+    </script>
+</body>
+</html>

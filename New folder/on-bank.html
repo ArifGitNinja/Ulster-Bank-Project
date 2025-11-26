@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Banking Help | Ulster Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles - Same as home page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6E0C89;
+            --secondary-color: #E6007E;
+            --accent-color: #FF9900;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --text-color: #333333;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c9006b;
+        }
+        
+        /* Header Styles - Same as home page */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(110, 12, 137, 0.8), rgba(110, 12, 137, 0.8)), url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Quick Help Section */
+        .quick-help {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+        
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .help-card {
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .help-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .help-card h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Troubleshooting Section */
+        .troubleshooting {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-color);
+        }
+        
+        .troubleshooting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .issue-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .issue-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .issue-header i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .issue-content {
+            padding: 25px;
+        }
+        
+        .issue-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Security Section */
+        .security {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .security-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .security-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .security-content {
+            padding: 25px;
+        }
+        
+        .security-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Video Tutorials */
+        .video-tutorials {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tutorial-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tutorial-video {
+            height: 200px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 4rem;
+        }
+        
+        .tutorial-content {
+            padding: 20px;
+        }
+        
+        .tutorial-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .tutorial-duration {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            background-color: var(--white);
+            padding: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            background-color: var(--white);
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .contact-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .contact-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .contact-info {
+            margin: 20px 0;
+        }
+        
+        .contact-info div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        /* Promotional Banner */
+        .promo-banner {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .promo-banner h2 {
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .modal-header h2 {
+            color: var(--primary-color);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .help-grid, .troubleshooting-grid, .security-grid, .tutorials-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span>Online Banking Help: 0800 231 234</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="on-bank.html">Help & Support</a>
+                    <a href="loc.html">Branch Locator</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <!-- Ulster Bank Logo -->
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="20" fill="#6E0C89"/>
+                        <path d="M15 15H25V25H15V15Z" fill="white"/>
+                        <path d="M20 10L25 15H15L20 10Z" fill="white"/>
+                        <path d="M20 30L15 25H25L20 30Z" fill="white"/>
+                    </svg>
+                    <h1>Ulster Bank</h1>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Banking <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="current-accounts.html">Current Accounts</a>
+                                <a href="savings-accounts.html">Savings Accounts</a>
+                                <a href="credit-card.html">Credit Cards</a>
+                                <a href="loans.html">Loans</a>
+                                <a href="mortgages.html">Mortgages</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Insurance <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="car-insurance.html">Car Insurance</a>
+                                <a href="home-insurance.html">Home Insurance</a>
+                                <a href="life-insurance.html">Life Insurance</a>
+                                <a href="travel-insurance.html">Travel Insurance</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Investments <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="sav-in.html">Savings & Investments</a>
+                                <a href="pension.html">Pensions</a>
+                                <a href="stock.html">Stocks & Shares</a>
+                            </div>
+                        </li>
+                       <li><a href="busi-bank.html">Business Banking</a></li>
+                        <li class="dropdown">
+                            <a href="help.html">Help & Support <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="on-bank.html">Online Banking Help</a>
+                                <a href="sec-cen.html">Security Centre</a>
+                              
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+             <div class="auth-buttons">
+                    <a href="dig-bank.html" class="btn">Digital Banking</a>
+                    <a href="register.html" class="btn btn-secondary">Register</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Online Banking Help Centre</h2>
+            <p>Find answers to common questions, troubleshoot issues, and learn how to make the most of our digital banking services.</p>
+            <div class="hero-buttons">
+                <button class="btn" onclick="document.getElementById('troubleshooting').scrollIntoView({behavior: 'smooth'})">Common Issues</button>
+                <button class="btn btn-secondary">Video Tutorials</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Help Section -->
+    <section class="quick-help">
+        <div class="container">
+            <div class="help-grid">
+                <div class="help-card">
+                    <h3><i class="fas fa-key"></i> Login Issues</h3>
+                    <p>Having trouble accessing your account? Reset your password or troubleshoot login problems.</p>
+                    <button class="btn" style="margin-top: 15px;">Get Help</button>
+                </div>
+                <div class="help-card">
+                    <h3><i class="fas fa-money-bill-wave"></i> Payments & Transfers</h3>
+                    <p>Learn how to send money, set up standing orders, and manage your payments.</p>
+                    <button class="btn" style="margin-top: 15px;">Learn More</button>
+                </div>
+                <div class="help-card">
+                    <h3><i class="fas fa-mobile-alt"></i> Mobile Banking</h3>
+                    <p>Get help with our mobile app, including installation, features, and troubleshooting.</p>
+                    <button class="btn" style="margin-top: 15px;">Get Help</button>
+                </div>
+                <div class="help-card">
+                    <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                    <p>Protect your account and learn about our security features and best practices.</p>
+                    <button class="btn" style="margin-top: 15px;">Stay Secure</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting Section -->
+    <section class="troubleshooting" id="troubleshooting">
+        <div class="container">
+            <div class="section-title">
+                <h2>Common Issues & Solutions</h2>
+                <p>Quick fixes for the most frequently reported online banking problems</p>
+            </div>
+            <div class="troubleshooting-grid">
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <i class="fas fa-user-lock"></i>
+                        <h3>Can't Log In</h3>
+                    </div>
+                    <div class="issue-content">
+                        <h3>Forgotten Password or Username</h3>
+                        <p>If you've forgotten your login details, follow these steps:</p>
+                        <ol style="text-align: left; margin-top: 15px; padding-left: 20px;">
+                            <li>Click "Forgotten your login details?" on the login page</li>
+                            <li>Enter your registered email address</li>
+                            <li>Follow the instructions sent to your email</li>
+                            <li>Create a new password following our security guidelines</li>
+                        </ol>
+                        <p style="margin-top: 15px;"><strong>Still having issues?</strong> Call our support team on 0800 231 234</p>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h3>Payment Problems</h3>
+                    </div>
+                    <div class="issue-content">
+                        <h3>Payments Not Going Through</h3>
+                        <p>If your payment isn't processing, check these common issues:</p>
+                        <ul style="text-align: left; margin-top: 15px; padding-left: 20px;">
+                            <li>Ensure you have sufficient funds in your account</li>
+                            <li>Verify the recipient's account details are correct</li>
+                            <li>Check if you've exceeded your daily transfer limit</li>
+                            <li>Make sure your browser is up to date</li>
+                            <li>Try clearing your browser cache and cookies</li>
+                        </ul>
+                        <button class="btn" style="margin-top: 15px;">View Payment Limits</button>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>App Not Working</h3>
+                    </div>
+                    <div class="issue-content">
+                        <h3>Mobile Banking App Issues</h3>
+                        <p>If our mobile app isn't working properly:</p>
+                        <ul style="text-align: left; margin-top: 15px; padding-left: 20px;">
+                            <li>Check you're using the latest version of the app</li>
+                            <li>Ensure your phone's operating system is up to date</li>
+                            <li>Restart the app completely</li>
+                            <li>Try uninstalling and reinstalling the app</li>
+                            <li>Check your internet connection is stable</li>
+                        </ul>
+                        <div style="margin-top: 15px;">
+                            <a href="#" style="margin-right: 15px;"><i class="fab fa-apple"></i> App Store</a>
+                            <a href="#"><i class="fab fa-google-play"></i> Google Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security">
+        <div class="container">
+            <div class="section-title">
+                <h2>Security Centre</h2>
+                <p>Protect your account and personal information with our security guidance</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-card">
+                    <div class="security-image" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="security-content">
+                        <h3>Password Security</h3>
+                        <p>Create strong, unique passwords to protect your online banking account:</p>
+                        <ul style="text-align: left; margin-top: 15px;">
+                            <li>Use at least 12 characters with a mix of letters, numbers and symbols</li>
+                            <li>Avoid using personal information like birthdays or names</li>
+                            <li>Don't reuse passwords across different websites</li>
+                            <li>Change your password regularly</li>
+                            <li>Consider using a password manager</li>
+                        </ul>
+                        <button class="btn" style="margin-top: 15px;">Change Password</button>
+                    </div>
+                </div>
+                <div class="security-card">
+                    <div class="security-image" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="security-content">
+                        <h3>Recognise Phishing</h3>
+                        <p>Learn how to identify and avoid phishing attempts:</p>
+                        <ul style="text-align: left; margin-top: 15px;">
+                            <li>We will never ask for your full password via email or phone</li>
+                            <li>Check the sender's email address carefully</li>
+                            <li>Look for poor grammar and spelling mistakes</li>
+                            <li>Hover over links to see the actual URL before clicking</li>
+                            <li>When in doubt, contact us directly</li>
+                        </ul>
+                        <button class="btn" style="margin-top: 15px;">Report Suspicious Email</button>
+                    </div>
+                </div>
+                <div class="security-card">
+                    <div class="security-image" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="security-content">
+                        <h3>Two-Factor Authentication</h3>
+                        <p>Add an extra layer of security to your account:</p>
+                        <ul style="text-align: left; margin-top: 15px;">
+                            <li>Enable two-factor authentication for login</li>
+                            <li>Receive codes via SMS or authenticator app</li>
+                            <li>Required for certain high-risk transactions</li>
+                            <li>Protects your account even if your password is compromised</li>
+                        </ul>
+                        <button class="btn" style="margin-top: 15px;">Enable 2FA</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Tutorials -->
+    <section class="video-tutorials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Video Tutorials</h2>
+                <p>Watch step-by-step guides to using our online banking services</p>
+            </div>
+            <div class="tutorials-grid">
+                <div class="tutorial-card">
+                    <div class="tutorial-video">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Getting Started with Online Banking</h3>
+                        <div class="tutorial-duration">4:32</div>
+                        <p>Learn how to register, log in, and navigate the online banking dashboard.</p>
+                        <button class="btn" style="margin-top: 15px;">Watch Now</button>
+                    </div>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-video">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Making Payments & Transfers</h3>
+                        <div class="tutorial-duration">6:15</div>
+                        <p>Step-by-step guide to sending money to existing and new payees.</p>
+                        <button class="btn" style="margin-top: 15px;">Watch Now</button>
+                    </div>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-video">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Mobile App Tour</h3>
+                        <div class="tutorial-duration">7:48</div>
+                        <p>Explore all the features of our mobile banking app on iOS and Android.</p>
+                        <button class="btn" style="margin-top: 15px;">Watch Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common online banking questions</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I register for online banking?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        To register for online banking, you'll need your account number, sort code, and debit card. Visit our registration page and follow these steps:
+                        <ol style="margin-top: 10px; padding-left: 20px;">
+                            <li>Click "Register" on the online banking login page</li>
+                            <li>Enter your personal details and account information</li>
+                            <li>Create your username and password following our security guidelines</li>
+                            <li>Set up your security questions</li>
+                            <li>Verify your identity using your debit card</li>
+                            <li>Activate your account via the confirmation email we send you</li>
+                        </ol>
+                        The entire process takes about 10 minutes. If you encounter any issues, please call our support team.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What should I do if I suspect fraudulent activity on my account?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        If you notice any suspicious activity on your account:
+                        <ol style="margin-top: 10px; padding-left: 20px;">
+                            <li>Immediately call our 24/7 fraud helpline on 0800 231 235</li>
+                            <li>Change your online banking password</li>
+                            <li>Review your recent transactions and report any you don't recognise</li>
+                            <li>Check your registered devices and log out any you don't recognise</li>
+                            <li>Update your security questions if you suspect they've been compromised</li>
+                        </ol>
+                        We take fraud very seriously and will work with you to secure your account and investigate any unauthorized activity.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Why can't I see my recent transactions?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        If your recent transactions aren't appearing, there are several possible reasons:
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li><strong>Processing delays:</strong> Some transactions can take 1-3 business days to appear</li>
+                            <li><strong>Filter settings:</strong> Check if you have any date range or category filters applied</li>
+                            <li><strong>Technical issues:</strong> Try refreshing the page or logging out and back in</li>
+                            <li><strong>Scheduled payments:</strong> Future-dated transactions won't appear until their processing date</li>
+                            <li><strong>Account selection:</strong> Make sure you're viewing the correct account</li>
+                        </ul>
+                        If transactions are still missing after 3 business days, please contact our support team.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I set up a new payee?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        To set up a new payee in online banking:
+                        <ol style="margin-top: 10px; padding-left: 20px;">
+                            <li>Log in to your online banking account</li>
+                            <li>Navigate to the "Payments & Transfers" section</li>
+                            <li>Select "Manage Payees" or "Add New Payee"</li>
+                            <li>Enter the payee's name, account number, and sort code</li>
+                            <li>Verify the payee details are correct</li>
+                            <li>Confirm the setup using your security device or one-time password</li>
+                        </ol>
+                        For security reasons, there may be a waiting period before you can make large payments to new payees. You can typically make payments up to £1,000 immediately to new payees.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What are the transaction limits for online banking?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Our standard transaction limits for online banking are:
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li><strong>Daily transfer limit:</strong> £10,000 per day</li>
+                            <li><strong>Single transaction limit:</strong> £5,000</li>
+                            <li><strong>Bill payments:</strong> £10,000 per day</li>
+                            <li><strong>New payee payments:</strong> £1,000 for the first 24 hours</li>
+                        </ul>
+                        These limits can be adjusted based on your needs and security verification. To request higher limits, please visit your local branch or contact our telephone banking service. Business accounts have different limits based on the account type.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Can't find what you're looking for? Our support team is here to help</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Phone Support</h3>
+                    <p>Speak directly with our online banking specialists</p>
+                    <div class="contact-info">
+                        <div><i class="fas fa-phone"></i> 0800 231 234</div>
+                        <div><i class="fas fa-clock"></i> 24/7 for urgent issues</div>
+                        <div><i class="fas fa-user-clock"></i> 8am-10pm for general queries</div>
+                    </div>
+                    <button class="btn">Call Now</button>
+                </div>
+                <div class="contact-card">
+                    <h3>Live Chat</h3>
+                    <p>Get instant help through our secure online chat</p>
+                    <div class="contact-info">
+                        <div><i class="fas fa-comments"></i> Available in online banking</div>
+                        <div><i class="fas fa-clock"></i> 7am-11pm daily</div>
+                        <div><i class="fas fa-shield-alt"></i> Fully secure and encrypted</div>
+                    </div>
+                    <button class="btn">Start Chat</button>
+                </div>
+                <div class="contact-card">
+                    <h3>Branch Visit</h3>
+                    <p>Get face-to-face help at your local branch</p>
+                    <div class="contact-info">
+                        <div><i class="fas fa-map-marker-alt"></i> Find your nearest branch</div>
+                        <div><i class="fas fa-clock"></i> Check branch opening hours</div>
+                        <div><i class="fas fa-calendar-alt"></i> Book an appointment online</div>
+                    </div>
+                    <button class="btn">Find a Branch</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <h2>Download Our Mobile Banking App</h2>
+            <p>Bank on the go with our secure mobile app, rated 4.8 stars on both App Store and Google Play</p>
+            <div style="margin-top: 20px;">
+                <a href="#" class="btn" style="margin-right: 10px;"><i class="fab fa-apple"></i> App Store</a>
+                <a href="#" class="btn btn-secondary"><i class="fab fa-google-play"></i> Google Play</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Banking</h3>
+                    <ul class="footer-links">
+                        <li><a href="current-accounts.html">Current Accounts</a></li>
+                        <li><a href="savings-accounts.html">Savings Accounts</a></li>
+                        <li><a href="credit-card.html">Credit Cards</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="mortgages.html">Mortgages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Insurance</h3>
+                    <ul class="footer-links">
+                        <li><a href="car-insurance.html">Car Insurance</a></li>
+                        <li><a href="home-insurance.html">Home Insurance</a></li>
+                        <li><a href="life-insurance.html">Life Insurance</a></li>
+                        <li><a href="travel-insurance.html">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Investments</h3>
+                    <ul class="footer-links">
+                        <li><a href="sav-in.html">Savings & Investments</a></li>
+                        <li><a href="pension.html">Pensions</a></li>
+                        <li><a href="stock.html">Stocks & Shares</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="on-bank" class="active">Online Banking Help</a></li>
+                        <li><a href="sec-cen">Security Centre</a></li>
+                       
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ulster Bank. All rights reserved. Ulster Bank is a trading name of Ulster Bank Ireland DAC. Ulster Bank Ireland DAC is regulated by the Central Bank of Ireland.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Digital Banking Login</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Log In</button>
+            </form>
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Not registered? <a href="#">Register for Digital Banking</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Login Modal
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+
+        loginBtn.addEventListener('click', function() {
+            loginModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, this would send the login credentials to a server
+            alert('Login functionality would be implemented here');
+            loginModal.style.display = 'none';
+        });
+
+        // Mobile dropdown functionality
+        document.querySelectorAll('.dropdown > a').forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const content = this.nextElementSibling;
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(function(ans) {
+                    ans.classList.remove('active');
+                });
+                
+                // If the clicked answer wasn't active, open it
+                if (!isActive) {
+                    answer.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

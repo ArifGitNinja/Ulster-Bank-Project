@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pensions | Ulster Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles - Same as home page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6E0C89;
+            --secondary-color: #E6007E;
+            --accent-color: #FF9900;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --text-color: #333333;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c9006b;
+        }
+        
+        /* Header Styles - Same as home page */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(110, 12, 137, 0.8), rgba(110, 12, 137, 0.8)), url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Pension Types Section */
+        .pension-types {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-color);
+        }
+        
+        .pension-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pension-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .pension-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pension-icon {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .pension-content {
+            padding: 20px;
+        }
+        
+        .pension-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .pension-content .tax-relief {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: var(--secondary-color);
+        }
+        
+        /* Pension Calculator */
+        .calculator-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calculator-results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .calculator-results.active {
+            display: block;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .result-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--primary-color);
+        }
+        
+        /* Pension Options */
+        .pension-options {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .options-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .options-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .option-item {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .option-item h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .option-item .contribution-limit {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: var(--secondary-color);
+        }
+        
+        /* Retirement Planning */
+        .retirement-planning {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .planning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .planning-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .planning-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .planning-card h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Pension Transfers */
+        .pension-transfers {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .transfer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .transfer-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .transfer-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .transfer-content {
+            padding: 20px;
+        }
+        
+        .transfer-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            background-color: var(--white);
+            padding: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            background-color: var(--white);
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Promotional Banner */
+        .promo-banner {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .promo-banner h2 {
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .modal-header h2 {
+            color: var(--primary-color);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .pension-grid, .options-details, .planning-grid, .transfer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span>Contact us: 0800 231 232</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="on-bank.html">Help & Support</a>
+                    <a href="loc.html">Branch Locator</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <!-- Ulster Bank Logo -->
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="20" fill="#6E0C89"/>
+                        <path d="M15 15H25V25H15V15Z" fill="white"/>
+                        <path d="M20 10L25 15H15L20 10Z" fill="white"/>
+                        <path d="M20 30L15 25H25L20 30Z" fill="white"/>
+                    </svg>
+                    <h1>Ulster Bank</h1>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Banking <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="current-accounts.html">Current Accounts</a>
+                                <a href="savings-accounts.html">Savings Accounts</a>
+                                <a href="credit-card.html">Credit Cards</a>
+                                <a href="loans.html">Loons</a>
+                                <a href="mortgages.html">Mortgages</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Insurance <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="car-insurance.html">Car Insurance</a>
+                                <a href="home-insurance.html">Home Insurance</a>
+                                <a href="life-insurance.html">Life Insurance</a>
+                                <a href="travel-insurance.html">Travel Insurance</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="active">Investments <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="sav-in.html">Savings & Investments</a>
+                                <a href="pension.html" class="active">Pensions</a>
+                                <a href="stock.html">Stocks & Shares</a>
+                            </div>
+                        </li>
+                        <li><a href="busi-bank.html">Business Banking</a></li>
+                        <li class="dropdown">
+                            <a href="help.html">Help & Support <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="on-bank.html">Online Banking Help</a>
+                                <a href="sec-cen.html">Security Centre</a>
+                              
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn" id="loginBtn">Digital Banking</button>
+                    <button class="btn btn-secondary">Register</button>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Plan for the Retirement You Deserve</h2>
+            <p>Build your pension savings with our flexible, tax-efficient options and expert guidance. Start planning today for the future you want tomorrow.</p>
+            <div class="hero-buttons">
+                <button class="btn" onclick="document.getElementById('calculator-section').scrollIntoView({behavior: 'smooth'})">Pension Calculator</button>
+                <button class="btn btn-secondary">Book a Pension Review</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pension Types Section -->
+    <section class="pension-types">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Pension Options</h2>
+                <p>Choose from a range of pension products designed to help you build your retirement savings</p>
+            </div>
+            <div class="pension-grid">
+                <div class="pension-card">
+                    <div class="pension-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="pension-content">
+                        <h3>Personal Pension</h3>
+                        <p>A flexible pension you can set up yourself, with contributions from you, your employer, or both. Perfect if you're self-employed or your employer doesn't offer a workplace pension.</p>
+                        <div class="tax-relief">Tax Relief: Up to 45%</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Flexible contributions</li>
+                            <li>Tax relief on contributions</li>
+                            <li>Access from age 55 (rising to 57)</li>
+                            <li>Wide investment choice</li>
+                        </ul>
+                        <button class="btn">Learn More</button>
+                    </div>
+                </div>
+                <div class="pension-card">
+                    <div class="pension-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="pension-content">
+                        <h3>Workplace Pension</h3>
+                        <p>A pension arranged by your employer, who must also contribute. Automatic enrolment means most employees are now included in workplace pension schemes.</p>
+                        <div class="tax-relief">Employer Contributions: Minimum 3%</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Employer contributions</li>
+                            <li>Tax relief on your contributions</li>
+                            <li>Automatic enrolment</li>
+                            <li>Consolidate previous pensions</li>
+                        </ul>
+                        <button class="btn">Learn More</button>
+                    </div>
+                </div>
+                <div class="pension-card">
+                    <div class="pension-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="pension-content">
+                        <h3>SIPP (Self-Invested Personal Pension)</h3>
+                        <p>Take control of your retirement savings with a wider range of investment options, including stocks, funds, and commercial property.</p>
+                        <div class="tax-relief">Investment Choice: 2,000+ Options</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Wider investment choice</li>
+                            <li>Full tax relief benefits</li>
+                            <li>Consolidate multiple pensions</li>
+                            <li>Ideal for experienced investors</li>
+                        </ul>
+                        <button class="btn">Learn More</button>
+                    </div>
+                </div>
+                <div class="pension-card">
+                    <div class="pension-icon">
+                        <i class="fas fa-retweet"></i>
+                    </div>
+                    <div class="pension-content">
+                        <h3>Annuity</h3>
+                        <p>Convert your pension pot into a guaranteed income for life. Provides certainty and security for your retirement years.</p>
+                        <div class="tax-relief">Guaranteed Income: For Life</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Guaranteed income for life</li>
+                            <li>Inflation-linked options</li>
+                            <li>Spouse/partner benefits</li>
+                            <li>Peace of mind in retirement</li>
+                        </ul>
+                        <button class="btn">Learn More</button>
+                    </div>
+                </div>
+                <div class="pension-card">
+                    <div class="pension-icon">
+                        <i class="fas fa-draw-polygon"></i>
+                    </div>
+                    <div class="pension-content">
+                        <h3>Drawdown</h3>
+                        <p>Keep your pension invested while taking an income. Offers flexibility but your pension pot remains exposed to investment performance.</p>
+                        <div class="tax-relief">Flexible Access: Take What You Need</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Flexible income options</li>
+                            <li>Keep pension invested</li>
+                            <li>Potential for growth</li>
+                            <li>Pass on remaining funds</li>
+                        </ul>
+                        <button class="btn">Learn More</button>
+                    </div>
+                </div>
+                <div class="pension-card">
+                    <div class="pension-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="pension-content">
+                        <h3>Final Salary Transfer</h3>
+                        <p>Specialist advice for transferring from a defined benefit (final salary) pension to a personal pension. Not suitable for everyone.</p>
+                        <div class="tax-relief">Specialist Advice: Required</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Specialist advice required</li>
+                            <li>Transfer value assessment</li>
+                            <li>Consider all implications</li>
+                            <li>Not suitable for everyone</li>
+                        </ul>
+                        <button class="btn">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pension Calculator -->
+    <section class="calculator-section" id="calculator-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pension Calculator</h2>
+                <p>Estimate how much you might need in retirement and whether you're on track</p>
+            </div>
+            <div class="calculator-container">
+                <form id="pensionCalculator">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="currentAge">Current Age</label>
+                            <input type="number" id="currentAge" placeholder="e.g. 40" value="40" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="retirementAge">Planned Retirement Age</label>
+                            <input type="number" id="retirementAge" placeholder="e.g. 68" value="68" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="currentPension">Current Pension Pot (£)</label>
+                            <input type="number" id="currentPension" placeholder="e.g. 50000" value="50000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="monthlyContribution">Monthly Contribution (£)</label>
+                            <input type="number" id="monthlyContribution" placeholder="e.g. 300" value="300" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="employerContribution">Employer Contribution (%)</label>
+                            <input type="number" id="employerContribution" step="0.1" placeholder="e.g. 5" value="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="investmentReturn">Expected Annual Growth (%)</label>
+                            <input type="number" id="investmentReturn" step="0.1" placeholder="e.g. 5" value="5" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="desiredIncome">Desired Annual Retirement Income (£)</label>
+                            <input type="number" id="desiredIncome" placeholder="e.g. 25000" value="25000" required>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="button" class="btn" id="calculatePensionBtn">Calculate My Pension</button>
+                    </div>
+                </form>
+                <div class="calculator-results" id="calculatorResults">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">Your Pension Projection</h3>
+                    <div class="result-item">
+                        <span>Years Until Retirement:</span>
+                        <span id="yearsResult">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Projected Pension Pot:</span>
+                        <span id="pensionPotResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Estimated Annual Income (Drawdown):</span>
+                        <span id="incomeResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Estimated Annual Income (Annuity):</span>
+                        <span id="annuityResult">£0</span>
+                    </div>
+                    <div class="result-total">
+                        <span>Shortfall/Surplus vs Target:</span>
+                        <span id="shortfallResult">£0</span>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn" onclick="document.getElementById('pension-types').scrollIntoView({behavior: 'smooth'})">Explore Pension Options</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pension Options -->
+    <section class="pension-options">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pension Contribution Options</h2>
+                <p>Understand how different contribution levels can impact your retirement savings</p>
+            </div>
+            <div class="options-tabs">
+                <button class="tab-btn active" data-tab="basic">Basic Contributor</button>
+                <button class="tab-btn" data-tab="moderate">Moderate Saver</button>
+                <button class="tab-btn" data-tab="aggressive">Aggressive Saver</button>
+            </div>
+            <div class="tab-content active" id="basic">
+                <div class="options-details">
+                    <div class="option-item">
+                        <h3>Minimum Auto-Enrolment</h3>
+                        <div class="contribution-limit">8% Total Contribution</div>
+                        <p>You pay 4%, your employer pays 3%, and you get 1% tax relief. The legal minimum for auto-enrolment schemes.</p>
+                        <div style="margin: 20px 0;">
+                            <div style="font-weight: bold;">Projected Pot at 68: £150,000</div>
+                            <div style="font-size: 0.9rem; color: #666;">Based on £25,000 salary from age 22</div>
+                        </div>
+                        <button class="btn">Start Here</button>
+                    </div>
+                    <div class="option-item">
+                        <h3>Employee +2%</h3>
+                        <div class="contribution-limit">10% Total Contribution</div>
+                        <p>You pay 6%, your employer pays 3%, and you get 1% tax relief. A small increase that makes a big difference over time.</p>
+                        <div style="margin: 20px 0;">
+                            <div style="font-weight: bold;">Projected Pot at 68: £190,000</div>
+                            <div style="font-size: 0.9rem; color: #666;">Based on £25,000 salary from age 22</div>
+                        </div>
+                        <button class="btn">Start Here</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="moderate">
+                <div class="options-details">
+                    <div class="option-item">
+                        <h3>Match Employer</h3>
+                        <div class="contribution-limit">12% Total Contribution</div>
+                        <p>You pay 8%, your employer pays 3%, and you get 1% tax relief. Matching typical employer maximum contributions.</p>
+                        <div style="margin: 20px 0;">
+                            <div style="font-weight: bold;">Projected Pot at 68: £230,000</div>
+                            <div style="font-size: 0.9rem; color: #666;">Based on £25,000 salary from age 22</div>
+                        </div>
+                        <button class="btn">Start Here</button>
+                    </div>
+                    <div class="option-item">
+                        <h3>Half Your Age</h3>
+                        <div class="contribution-limit">15% Total Contribution</div>
+                        <p>A common rule of thumb: contribute half your age as a percentage when you start saving.</p>
+                        <div style="margin: 20px 0;">
+                            <div style="font-weight: bold;">Projected Pot at 68: £290,000</div>
+                            <div style="font-size: 0.9rem; color: #666;">Based on £25,000 salary from age 30</div>
+                        </div>
+                        <button class="btn">Start Here</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="aggressive">
+                <div class="options-details">
+                    <div class="option-item">
+                        <h3>Maximum Tax Relief</h3>
+                        <div class="contribution-limit">£60,000 Annual Allowance</div>
+                        <p>Contribute up to £60,000 per year or 100% of your earnings, whichever is lower. Full tax relief available.</p>
+                        <div style="margin: 20px 0;">
+                            <div style="font-weight: bold;">Projected Pot at 68: £1,200,000</div>
+                            <div style="font-size: 0.9rem; color: #666;">Based on £60,000 contributions for 20 years</div>
+                        </div>
+                        <button class="btn">Start Here</button>
+                    </div>
+                    <div class="option-item">
+                        <h3>Carry Forward</h3>
+                        <div class="contribution-limit">Up to £180,000</div>
+                        <p>Use unused annual allowances from previous three years. Great for catching up or making large contributions.</p>
+                        <div style="margin: 20px 0;">
+                            <div style="font-weight: bold;">Projected Pot at 68: Varies</div>
+                            <div style="font-size: 0.9rem; color: #666;">Depends on previous years' allowances</div>
+                        </div>
+                        <button class="btn">Start Here</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retirement Planning -->
+    <section class="retirement-planning">
+        <div class="container">
+            <div class="section-title">
+                <h2>Retirement Planning Guide</h2>
+                <p>Key considerations for planning your retirement at different life stages</p>
+            </div>
+            <div class="planning-grid">
+                <div class="planning-card">
+                    <h3><i class="fas fa-user-graduate"></i> 20s-30s: Getting Started</h3>
+                    <p>Start early to benefit from compound growth. Even small contributions make a big difference over time. Consider taking more investment risk as you have time to recover from market downturns.</p>
+                    <ul style="text-align: left; margin-top: 15px;">
+                        <li>Start contributing as early as possible</li>
+                        <li>Take advantage of employer matching</li>
+                        <li>Consider higher-risk investments</li>
+                        <li>Review your pension annually</li>
+                    </ul>
+                </div>
+                <div class="planning-card">
+                    <h3><i class="fas fa-user"></i> 40s-50s: Building Momentum</h3>
+                    <p>Your peak earning years. Increase contributions where possible. Consider consolidating old pensions. Start thinking about your retirement goals and how much income you'll need.</p>
+                    <ul style="text-align: left; margin-top: 15px;">
+                        <li>Increase contributions with salary rises</li>
+                        <li>Consolidate previous pension pots</li>
+                        <li>Begin to reduce investment risk</li>
+                        <li>Get a state pension forecast</li>
+                    </ul>
+                </div>
+                <div class="planning-card">
+                    <h3><i class="fas fa-user-clock"></i> 50s-60s: Nearing Retirement</h3>
+                    <p>Fine-tune your retirement plans. Consider your options for accessing your pension. Think about whether you want to reduce hours gradually or stop work completely.</p>
+                    <ul style="text-align: left; margin-top: 15px;">
+                        <li>Get professional retirement advice</li>
+                        <li>Consider your pension access options</li>
+                        <li>Shift to lower-risk investments</li>
+                        <li>Plan your retirement budget</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pension Transfers -->
+    <section class="pension-transfers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pension Transfer Services</h2>
+                <p>Consolidate your pensions to make them easier to manage and potentially reduce costs</p>
+            </div>
+            <div class="transfer-grid">
+                <div class="transfer-card">
+                    <div class="transfer-header">
+                        <h3>Basic Transfer</h3>
+                    </div>
+                    <div class="transfer-content">
+                        <p>Transfer existing personal pensions into one modern pension plan with competitive charges and online access.</p>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Transfer multiple pensions</li>
+                            <li>Online management</li>
+                            <li>Competitive annual charge: 0.45%</li>
+                            <li>No transfer fees</li>
+                        </ul>
+                        <button class="btn">Start Transfer</button>
+                    </div>
+                </div>
+                <div class="transfer-card">
+                    <div class="transfer-header">
+                        <h3>Advice-Assisted Transfer</h3>
+                    </div>
+                    <div class="transfer-content">
+                        <p>Get personalised advice on whether transferring is right for you, particularly for final salary pensions.</p>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Personalised advice</li>
+                            <li>Final salary transfer assessment</li>
+                            <li>Ongoing review service</li>
+                            <li>Advice fee: 1-3% of transfer value</li>
+                        </ul>
+                        <button class="btn">Get Advice</button>
+                    </div>
+                </div>
+                <div class="transfer-card">
+                    <div class="transfer-header">
+                        <h3>Full Consolidation Service</h3>
+                    </div>
+                    <div class="transfer-content">
+                        <p>We handle everything from locating old pensions to completing all transfer paperwork on your behalf.</p>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>We trace old pensions for you</li>
+                            <li>Handle all paperwork</li>
+                            <li>Regular progress updates</li>
+                            <li>One-off fee: £500</li>
+                        </ul>
+                        <button class="btn">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Hear from people who have secured their retirement with our pension solutions</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Ulster Bank helped me consolidate five different pension pots from previous jobs into one easy-to-manage plan. Their advisor explained all my options clearly and helped me choose investments that matched my retirement goals. I now feel confident about my financial future."
+                    </div>
+                    <div class="testimonial-author">- Michael O'Connor, Retired Teacher, Derry</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about pensions and retirement planning</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How much should I be saving for retirement?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        A common rule of thumb is to contribute half your age as a percentage when you start saving. So if you start at age 30, aim to contribute 15% of your salary (including employer contributions). However, everyone's situation is different. Use our pension calculator to get a personalised estimate based on your retirement goals.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is tax relief on pensions and how does it work?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Tax relief means the government adds money to your pension contributions. Basic rate taxpayers get 20% tax relief, so for every £80 you contribute, the government adds £20, making £100 in your pension. Higher and additional rate taxpayers can claim further relief through their tax return. There are annual (£60,000) and lifetime (£1,073,100) limits on how much you can contribute with tax relief.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        When can I access my pension?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You can currently access your pension from age 55, but this is rising to 57 in 2028. You don't have to stop working to access your pension. You can take up to 25% as a tax-free lump sum and use the rest to provide an income through drawdown or an annuity. There are different rules for some older pension schemes, so check your specific plan details.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Should I transfer my final salary pension?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Final salary (defined benefit) pensions are valuable because they provide a guaranteed income for life. Transferring is irreversible and not suitable for most people. You must take regulated financial advice if your transfer value is over £30,000. We can help you understand the pros and cons and connect you with a specialist advisor if appropriate.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What happens to my pension when I die?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        This depends on the type of pension and your age when you die. Generally, if you die before taking your pension, the full value can be passed on tax-free if you're under 75. If you're over 75, your beneficiaries pay income tax on withdrawals. You should complete an expression of wishes form to tell your pension provider who you'd like to benefit. Different rules apply to annuities and final salary pensions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <h2>Free Pension Review Worth £500</h2>
+            <p>Book a no-obligation pension review with one of our specialists and get a personalised retirement plan</p>
+            <button class="btn btn-secondary" style="margin-top: 20px;">Book My Free Review</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Banking</h3>
+                    <ul class="footer-links">
+                        <li><a href="current-accounts.html">Current Accounts</a></li>
+                        <li><a href="savings-accounts.html">Savings Accounts</a></li>
+                        <li><a href="credit-card.html">Credit Cards</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="mortgages.html">Mortgages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Insurance</h3>
+                    <ul class="footer-links">
+                        <li><a href="car-insurance.html">Car Insurance</a></li>
+                        <li><a href="home-insurance.html">Home Insurance</a></li>
+                        <li><a href="life-insurance.html">Life Insurance</a></li>
+                        <li><a href="travel-insurance.html">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Investments</h3>
+                    <ul class="footer-links">
+                        <li><a href="savings-investments.html">Savings & Investments</a></li>
+                        <li><a href="pension.html" class="active">Pensions</a></li>
+                        <li><a href="stock.html">Stocks & Shares</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li><a href="#">Online Banking Help</a></li>
+                        <li><a href="#">Security Centre</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ulster Bank. All rights reserved. Ulster Bank is a trading name of Ulster Bank Ireland DAC. Ulster Bank Ireland DAC is regulated by the Central Bank of Ireland.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">The value of investments can fall as well as rise and you may not get back the amount originally invested. Pension rules depend on your circumstances and tax rules may change in the future. We recommend seeking financial advice before making decisions about your pension.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Digital Banking Login</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Log In</button>
+            </form>
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Not registered? <a href="#">Register for Digital Banking</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Login Modal
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+
+        loginBtn.addEventListener('click', function() {
+            loginModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, this would send the login credentials to a server
+            alert('Login functionality would be implemented here');
+            loginModal.style.display = 'none';
+        });
+
+        // Mobile dropdown functionality
+        document.querySelectorAll('.dropdown > a').forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const content = this.nextElementSibling;
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+
+        // Tab functionality for pension options
+        document.querySelectorAll('.tab-btn').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab-btn').forEach(function(t) {
+                    t.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-content').forEach(function(c) {
+                    c.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(function(ans) {
+                    ans.classList.remove('active');
+                });
+                
+                // If the clicked answer wasn't active, open it
+                if (!isActive) {
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Pension Calculator
+        document.getElementById('calculatePensionBtn').addEventListener('click', function() {
+            const currentAge = parseInt(document.getElementById('currentAge').value) || 0;
+            const retirementAge = parseInt(document.getElementById('retirementAge').value) || 0;
+            const currentPension = parseFloat(document.getElementById('currentPension').value) || 0;
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+            const employerContribution = parseFloat(document.getElementById('employerContribution').value) || 0;
+            const investmentReturn = parseFloat(document.getElementById('investmentReturn').value) || 0;
+            const desiredIncome = parseFloat(document.getElementById('desiredIncome').value) || 0;
+            
+            const yearsToRetirement = retirementAge - currentAge;
+            const monthsToRetirement = yearsToRetirement * 12;
+            
+            // Calculate total monthly contribution (employee + employer + tax relief)
+            const employeeContributionAfterTaxRelief = monthlyContribution * 1.25; // Basic rate tax relief
+            const employerMonthlyContribution = (monthlyContribution * employerContribution) / 100;
+            const totalMonthlyContribution = employeeContributionAfterTaxRelief + employerMonthlyContribution;
+            
+            // Calculate future value using compound interest
+            const monthlyRate = investmentReturn / 100 / 12;
+            
+            let futureValue = currentPension * Math.pow(1 + monthlyRate, monthsToRetirement);
+            
+            // Add monthly contributions
+            for (let i = 0; i < monthsToRetirement; i++) {
+                futureValue += totalMonthlyContribution * Math.pow(1 + monthlyRate, monthsToRetirement - i - 1);
+            }
+            
+            // Calculate potential retirement income
+            const drawdownIncome = futureValue * 0.04; // 4% safe withdrawal rate
+            const annuityIncome = futureValue * 0.05; // Rough annuity rate of 5%
+            
+            const shortfall = desiredIncome - drawdownIncome;
+            
+            // Update results
+            document.getElementById('yearsResult').textContent = yearsToRetirement;
+            document.getElementById('pensionPotResult').textContent = '£' + futureValue.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+            document.getElementById('incomeResult').textContent = '£' + drawdownIncome.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+            document.getElementById('annuityResult').textContent = '£' + annuityIncome.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+            
+            const shortfallElement = document.getElementById('shortfallResult');
+            if (shortfall > 0) {
+                shortfallElement.textContent = '£' + shortfall.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + ' shortfall';
+                shortfallElement.style.color = '#F44336';
+            } else {
+                shortfallElement.textContent = '£' + Math.abs(shortfall).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + ' surplus';
+                shortfallElement.style.color = '#4CAF50';
+            }
+            
+            // Show results
+            document.getElementById('calculatorResults').classList.add('active');
+        });
+    </script>
+</body>
+</html>

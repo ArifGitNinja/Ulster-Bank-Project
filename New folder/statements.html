@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Statements - Ulster Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        /* All your existing CSS styles remain the same */
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6E0C89;
+            --secondary-color: #E6007E;
+            --accent-color: #FF9900;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --text-color: #333333;
+            --white: #FFFFFF;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c9006b;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(110, 12, 137, 0.8), rgba(110, 12, 137, 0.8)), url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Statements Section */
+        .statements-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-color);
+        }
+        
+        .statements-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        
+        .statements-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .statements-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .benefits-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .benefits-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .statements-actions-container {
+            flex: 1;
+            min-width: 500px;
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .account-selector {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .account-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .account-card:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(110, 12, 137, 0.05);
+        }
+        
+        .account-card.active {
+            border-color: var(--primary-color);
+            background-color: rgba(110, 12, 137, 0.05);
+        }
+        
+        .account-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .account-balance {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .statement-periods {
+            margin-bottom: 30px;
+        }
+        
+        .period-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .period-card {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .period-card:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .period-card.active {
+            border-color: var(--primary-color);
+            background-color: rgba(110, 12, 137, 0.05);
+        }
+        
+        .period-date {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .period-status {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .download-options {
+            margin-bottom: 30px;
+        }
+        
+        .format-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .format-option {
+            flex: 1;
+            min-width: 120px;
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .format-option:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .format-option.active {
+            border-color: var(--primary-color);
+            background-color: rgba(110, 12, 137, 0.05);
+        }
+        
+        .format-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .custom-date-range {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Transaction History */
+        .transactions-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .transactions-table th, .transactions-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .transactions-table th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .transactions-table tr:hover {
+            background-color: rgba(110, 12, 137, 0.05);
+        }
+        
+        .transaction-amount.positive {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        .transaction-amount.negative {
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+        
+        .transaction-category {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .pagination-btn {
+            padding: 8px 15px;
+            background-color: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pagination-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .pagination-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Security Section */
+        .security-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .security-item {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .security-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .statements-container {
+                flex-direction: column;
+            }
+            
+            .statements-actions-container {
+                min-width: 100%;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .period-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .format-options {
+                flex-direction: column;
+            }
+            
+            .transactions-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span>Contact us: 0800 231 232</span>
+                </div>
+                 <div class="top-bar-links">
+                    <a href="on-bank.html">Help & Support</a>
+                    <a href="loc.html">Branch Locator</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <!-- Ulster Bank Logo -->
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="20" fill="#6E0C89"/>
+                        <path d="M15 15H25V25H15V15Z" fill="white"/>
+                        <path d="M20 10L25 15H15L20 10Z" fill="white"/>
+                        <path d="M20 30L15 25H25L20 30Z" fill="white"/>
+                    </svg>
+                    <h1>Ulster Bank</h1>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Banking <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="current-accounts.html">Current Accounts</a>
+                                <a href="savings-accounts.html">Savings Accounts</a>
+                                <a href="credit-card.html">Credit Cards</a>
+                                <a href="loans.html">Loans</a>
+                                <a href="mortgages.html">Mortgages</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Insurance <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="car-insurance.html">Car Insurance</a>
+                                <a href="home-insurance.html">Home Insurance</a>
+                                <a href="life-insurance.html">Life Insurance</a>
+                                <a href="travel-insurance.html">Travel Insurance</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Investments <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="savings-accounts.html">Savings & Investments</a>
+                                <a href="pension.html">Pensions</a>
+                                <a href="stock.html">Stocks & Shares</a>
+                            </div>
+                        </li>
+                         <li><a href="busi-bank.html">Business Banking</a></li>
+                        <li class="dropdown">
+                            <a href="help.html">Help & Support <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="on-bank.html">Online Banking Help</a>
+                                <a href="sec-cen.html">Security Centre</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn" onclick="window.location.href='digital-banking.html'">Digital Banking</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='register.html'">Register</button>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Bank Statements</h2>
+            <p>Access, view, and download your account statements. Keep track of your finances with detailed transaction history.</p>
+        </div>
+    </section>
+
+    <!-- Statements Section -->
+    <section class="statements-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Manage Your Statements</h2>
+                <p>Download statements for your accounts in various formats</p>
+            </div>
+            <div class="statements-container">
+                <div class="statements-info">
+                    <h3>Why Use Digital Statements?</h3>
+                    <ul class="benefits-list">
+                        <li>Instant access to your statements 24/7</li>
+                        <li>Environmentally friendly - reduce paper waste</li>
+                        <li>Secure storage in your digital banking</li>
+                        <li>Easy to search and filter transactions</li>
+                        <li>Download in multiple formats (PDF, CSV, Excel)</li>
+                        <li>Access up to 7 years of statement history</li>
+                    </ul>
+                    
+                    <div class="security-item" style="text-align: left; background: transparent; box-shadow: none; padding: 20px 0;">
+                        <div class="security-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Secure Document Access</h3>
+                        <p>Your statements are protected with bank-level security and encryption. Only you can access your financial documents.</p>
+                    </div>
+                </div>
+                <div class="statements-actions-container">
+                    <!-- Account Selection -->
+                    <div class="account-selector">
+                        <h3 style="margin-bottom: 15px; color: var(--primary-color);">Select Account</h3>
+                        <div class="account-card active" data-account="current">
+                            <div class="account-info">
+                                <h4>Current Account</h4>
+                                <p>•••• 1234</p>
+                            </div>
+                            <div class="account-balance">£2,458.75</div>
+                        </div>
+                        <div class="account-card" data-account="savings">
+                            <div class="account-info">
+                                <h4>Savings Account</h4>
+                                <p>•••• 5678</p>
+                            </div>
+                            <div class="account-balance">£8,250.00</div>
+                        </div>
+                        <div class="account-card" data-account="credit">
+                            <div class="account-info">
+                                <h4>Credit Card</h4>
+                                <p>•••• 9012</p>
+                            </div>
+                            <div class="account-balance">£450.50</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Statement Periods -->
+                    <div class="statement-periods">
+                        <h3 style="margin-bottom: 15px; color: var(--primary-color);">Select Statement Period</h3>
+                        <div class="period-grid">
+                            <div class="period-card active" data-period="latest">
+                                <div class="period-date">Sep 2023</div>
+                                <div class="period-status">Latest Statement</div>
+                            </div>
+                            <div class="period-card" data-period="august">
+                                <div class="period-date">Aug 2023</div>
+                                <div class="period-status">Available</div>
+                            </div>
+                            <div class="period-card" data-period="july">
+                                <div class="period-date">Jul 2023</div>
+                                <div class="period-status">Available</div>
+                            </div>
+                            <div class="period-card" data-period="custom">
+                                <div class="period-date">Custom Range</div>
+                                <div class="period-status">Select dates</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Date Range -->
+                    <div class="custom-date-range" id="customDateRange">
+                        <h3 style="margin-bottom: 15px; color: var(--primary-color);">Custom Date Range</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="startDate">From Date</label>
+                                <input type="date" id="startDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate">To Date</label>
+                                <input type="date" id="endDate">
+                            </div>
+                        </div>
+                        <button class="btn" onclick="applyCustomDateRange()">Apply Date Range</button>
+                    </div>
+                    
+                    <!-- Download Options -->
+                    <div class="download-options">
+                        <h3 style="margin-bottom: 15px; color: var(--primary-color);">Download Format</h3>
+                        <div class="format-options">
+                            <div class="format-option active" data-format="pdf">
+                                <div class="format-icon">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div>PDF</div>
+                                <small>Best for printing</small>
+                            </div>
+                            <div class="format-option" data-format="csv">
+                                <div class="format-icon">
+                                    <i class="fas fa-file-csv"></i>
+                                </div>
+                                <div>CSV</div>
+                                <small>For spreadsheets</small>
+                            </div>
+                            <div class="format-option" data-format="excel">
+                                <div class="format-icon">
+                                    <i class="fas fa-file-excel"></i>
+                                </div>
+                                <div>Excel</div>
+                                <small>For analysis</small>
+                            </div>
+                            <div class="format-option" data-format="ofx">
+                                <div class="format-icon">
+                                    <i class="fas fa-file-export"></i>
+                                </div>
+                                <div>OFX</div>
+                                <small>For accounting</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="form-row">
+                        <button class="btn" style="flex: 1;" onclick="downloadStatement()">
+                            <i class="fas fa-download"></i> Download Statement
+                        </button>
+                        <button class="btn btn-outline" style="flex: 1;" onclick="viewOnline()">
+                            <i class="fas fa-eye"></i> View Online
+                        </button>
+                    </div>
+                    
+                    <!-- Email Statement -->
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="emailAddress">Email Statement To (Optional)</label>
+                        <input type="email" id="emailAddress" placeholder="Enter email address">
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: 10px;" onclick="emailStatement()">
+                            <i class="fas fa-paper-plane"></i> Email Statement
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transactions Section -->
+    <section class="transactions-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Transactions</h2>
+                <p>View your recent account activity</p>
+            </div>
+            
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15 Oct 2023</td>
+                        <td>Tesco Superstore</td>
+                        <td><span class="transaction-category">Groceries</span></td>
+                        <td class="transaction-amount negative">-£42.50</td>
+                        <td>£2,458.75</td>
+                    </tr>
+                    <tr>
+                        <td>14 Oct 2023</td>
+                        <td>Amazon UK</td>
+                        <td><span class="transaction-category">Shopping</span></td>
+                        <td class="transaction-amount negative">-£29.99</td>
+                        <td>£2,501.25</td>
+                    </tr>
+                    <tr>
+                        <td>12 Oct 2023</td>
+                        <td>Salary Deposit</td>
+                        <td><span class="transaction-category">Income</span></td>
+                        <td class="transaction-amount positive">+£2,500.00</td>
+                        <td>£2,531.24</td>
+                    </tr>
+                    <tr>
+                        <td>10 Oct 2023</td>
+                        <td>Netflix Subscription</td>
+                        <td><span class="transaction-category">Entertainment</span></td>
+                        <td class="transaction-amount negative">-£10.99</td>
+                        <td>£31.24</td>
+                    </tr>
+                    <tr>
+                        <td>8 Oct 2023</td>
+                        <td>Starbucks</td>
+                        <td><span class="transaction-category">Dining</span></td>
+                        <td class="transaction-amount negative">-£4.50</td>
+                        <td>£42.23</td>
+                    </tr>
+                    <tr>
+                        <td>5 Oct 2023</td>
+                        <td>Transfer from Savings</td>
+                        <td><span class="transaction-category">Transfer</span></td>
+                        <td class="transaction-amount positive">+£200.00</td>
+                        <td>£46.73</td>
+                    </tr>
+                    <tr>
+                        <td>3 Oct 2023</td>
+                        <td>British Gas</td>
+                        <td><span class="transaction-category">Utilities</span></td>
+                        <td class="transaction-amount negative">-£85.00</td>
+                        <td>-£153.27</td>
+                    </tr>
+                    <tr>
+                        <td>1 Oct 2023</td>
+                        <td>Spotify</td>
+                        <td><span class="transaction-category">Entertainment</span></td>
+                        <td class="transaction-amount negative">-£9.99</td>
+                        <td>-£68.27</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="pagination">
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Secure Document Access</h2>
+                <p>Your financial information is protected with multiple security layers</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Bank-Level Encryption</h3>
+                    <p>All statements are encrypted using industry-standard security protocols.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>7-Year Archive</h3>
+                    <p>Access your statements from the past 7 years at any time.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Easy Search</h3>
+                    <p>Quickly find specific transactions with our powerful search tools.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Access</h3>
+                    <p>View and download statements on your mobile device.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Banking</h3>
+                    <ul class="footer-links">
+                        <li><a href="current-accounts.html">Current Accounts</a></li>
+                        <li><a href="savings-accounts.html">Savings Accounts</a></li>
+                        <li><a href="credit-card.html">Credit Cards</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="mortgages.html">Mortgages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Insurance</h3>
+                    <ul class="footer-links">
+                        <li><a href="car-insurance.html">Car Insurance</a></li>
+                        <li><a href="home-insurance.html">Home Insurance</a></li>
+                        <li><a href="life-insurance.html">Life Insurance</a></li>
+                        <li><a href="travel-insurance.html">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li><a href="on-bank.html">Online Banking Help</a></li>
+                        <li><a href="sec-cen.html">Security Centre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ulster Bank. All rights reserved. Ulster Bank is a trading name of Ulster Bank Ireland DAC. Ulster Bank Ireland DAC is regulated by the Central Bank of Ireland.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Account Selection
+        document.querySelectorAll('.account-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.account-card').forEach(c => {
+                    c.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Period Selection
+        document.querySelectorAll('.period-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.period-card').forEach(c => {
+                    c.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Show custom date range if selected
+                const period = this.getAttribute('data-period');
+                const customRange = document.getElementById('customDateRange');
+                if (period === 'custom') {
+                    customRange.style.display = 'block';
+                } else {
+                    customRange.style.display = 'none';
+                }
+            });
+        });
+
+        // Format Selection
+        document.querySelectorAll('.format-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.format-option').forEach(o => {
+                    o.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Apply custom date range
+        function applyCustomDateRange() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            if (!startDate || !endDate) {
+                alert('Please select both start and end dates');
+                return;
+            }
+            
+            if (new Date(startDate) > new Date(endDate)) {
+                alert('End date must be after start date');
+                return;
+            }
+            
+            alert(`Custom date range applied: ${startDate} to ${endDate}`);
+            // In a real application, this would filter the transactions
+        }
+
+        // Download statement
+        function downloadStatement() {
+            const account = document.querySelector('.account-card.active').getAttribute('data-account');
+            const period = document.querySelector('.period-card.active').getAttribute('data-period');
+            const format = document.querySelector('.format-option.active').getAttribute('data-format');
+            
+            if (format === 'pdf') {
+                generatePDFStatement(account, period);
+            } else {
+                alert(`Downloading ${account} statement for ${period} in ${format.toUpperCase()} format`);
+                // In a real application, this would trigger the download for other formats
+            }
+        }
+
+        // Generate PDF statement
+        function generatePDFStatement(account, period) {
+            // Use jsPDF library
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Get account information
+            const accountInfo = document.querySelector('.account-card.active .account-info');
+            const accountName = accountInfo.querySelector('h4').textContent;
+            const accountNumber = accountInfo.querySelector('p').textContent;
+            const accountBalance = document.querySelector('.account-card.active .account-balance').textContent;
+            
+            // Set PDF properties
+            doc.setProperties({
+                title: `${accountName} Statement - ${period}`,
+                subject: 'Bank Statement',
+                author: 'Ulster Bank',
+                keywords: 'bank, statement, account',
+                creator: 'Ulster Bank Digital Banking'
+            });
+            
+            // Add bank logo and header
+            doc.setFontSize(20);
+            doc.setTextColor(110, 12, 137); // Primary color
+            doc.text('Ulster Bank', 20, 30);
+            
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Account Statement', 20, 45);
+            
+            // Add account details
+            doc.setFontSize(12);
+            doc.text(`Account: ${accountName}`, 20, 65);
+            doc.text(`Account Number: ${accountNumber}`, 20, 75);
+            doc.text(`Statement Period: ${period}`, 20, 85);
+            doc.text(`Current Balance: ${accountBalance}`, 20, 95);
+            doc.text(`Statement Date: ${new Date().toLocaleDateString()}`, 20, 105);
+            
+            // Add transaction table header
+            doc.setFillColor(110, 12, 137);
+            doc.setTextColor(255, 255, 255);
+            doc.rect(20, 120, 170, 10, 'F');
+            doc.text('Date', 25, 127);
+            doc.text('Description', 60, 127);
+            doc.text('Amount', 140, 127);
+            
+            // Add transactions
+            doc.setTextColor(0, 0, 0);
+            const transactions = document.querySelectorAll('.transactions-table tbody tr');
+            let yPosition = 135;
+            
+            transactions.forEach((transaction, index) => {
+                if (yPosition > 270) {
+                    doc.addPage();
+                    yPosition = 20;
+                    
+                    // Add header on new page
+                    doc.setFillColor(110, 12, 137);
+                    doc.setTextColor(255, 255, 255);
+                    doc.rect(20, yPosition, 170, 10, 'F');
+                    doc.text('Date', 25, yPosition + 7);
+                    doc.text('Description', 60, yPosition + 7);
+                    doc.text('Amount', 140, yPosition + 7);
+                    yPosition += 15;
+                }
+                
+                const cells = transaction.querySelectorAll('td');
+                const date = cells[0].textContent;
+                const description = cells[1].textContent;
+                const amount = cells[3].textContent;
+                
+                doc.text(date, 25, yPosition);
+                doc.text(description, 60, yPosition);
+                doc.text(amount, 140, yPosition);
+                
+                yPosition += 10;
+            });
+            
+            // Add footer
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(10);
+                doc.setTextColor(128, 128, 128);
+                doc.text(`Page ${i} of ${pageCount}`, 105, 285);
+                doc.text('Ulster Bank - Confidential', 20, 285);
+                doc.text(`Generated on: ${new Date().toLocaleString()}`, 160, 285, null, null, 'right');
+            }
+            
+            // Save the PDF
+            doc.save(`${accountName.replace(/\s+/g, '_')}_Statement_${period.replace(/\s+/g, '_')}.pdf`);
+        }
+
+        // View statement online
+        function viewOnline() {
+            const account = document.querySelector('.account-card.active').getAttribute('data-account');
+            const period = document.querySelector('.period-card.active').getAttribute('data-period');
+            
+            alert(`Opening ${account} statement for ${period} in online viewer`);
+            // In a real application, this would open the statement in a viewer
+        }
+
+        // Email statement
+        function emailStatement() {
+            const email = document.getElementById('emailAddress').value;
+            const account = document.querySelector('.account-card.active').getAttribute('data-account');
+            const period = document.querySelector('.period-card.active').getAttribute('data-period');
+            const format = document.querySelector('.format-option.active').getAttribute('data-format');
+            
+            if (!email) {
+                alert('Please enter an email address');
+                return;
+            }
+            
+            alert(`Sending ${account} statement for ${period} in ${format.toUpperCase()} format to ${email}`);
+            // In a real application, this would email the statement
+        }
+
+        // Pagination
+        document.querySelectorAll('.pagination-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.textContent === 'Next') {
+                    // Handle next page
+                    alert('Loading next page of transactions');
+                } else {
+                    document.querySelectorAll('.pagination-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    alert(`Loading page ${this.textContent} of transactions`);
+                }
+            });
+        });
+
+        // Mobile dropdown functionality
+        document.querySelectorAll('.dropdown > a').forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const content = this.nextElementSibling;
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Insurance | Ulster Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles - Same as home page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6E0C89;
+            --secondary-color: #E6007E;
+            --accent-color: #FF9900;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --text-color: #333333;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c9006b;
+        }
+        
+        /* Header Styles - Same as home page */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(110, 12, 137, 0.8), rgba(110, 12, 137, 0.8)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Insurance Quote Form */
+        .quote-form {
+            background-color: var(--white);
+            padding: 60px 0;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .form-group {
+            flex: 1 0 300px;
+            margin: 0 15px 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-submit {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Insurance Features */
+        .insurance-features {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .feature-content {
+            padding: 20px;
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Coverage Options */
+        .coverage-options {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .coverage-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .coverage-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .coverage-item {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .coverage-item h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .coverage-item .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--dark-color);
+        }
+        
+        /* Additional Coverage Options */
+        .additional-coverage {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .coverage-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .coverage-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .coverage-card h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            background-color: var(--white);
+            padding: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            background-color: var(--white);
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Promotional Banner */
+        .promo-banner {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .promo-banner h2 {
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .modal-header h2 {
+            color: var(--primary-color);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .features-grid, .coverage-details, .coverage-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span>Contact us: 0800 231 232</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="#">Help & Support</a>
+                    <a href="#">Branch Locator</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <!-- Ulster Bank Logo -->
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="20" fill="#6E0C89"/>
+                        <path d="M15 15H25V25H15V15Z" fill="white"/>
+                        <path d="M20 10L25 15H15L20 10Z" fill="white"/>
+                        <path d="M20 30L15 25H25L20 30Z" fill="white"/>
+                    </svg>
+                    <h1>Ulster Bank</h1>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Banking <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="current-accounts.html">Current Accounts</a>
+                                <a href="savings-accounts.html">Savings Accounts</a>
+                                <a href="credit-card.html">Credit Cards</a>
+                                <a href="loans.html">Loans</a>
+                                <a href="mortgages.html">Mortgages</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="active">Insurance <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="car-insurance.html">Car Insurance</a>
+                                <a href="home-insurance.html" class="active">Home Insurance</a>
+                                <a href="life-insurance.html">Life Insurance</a>
+                                <a href="travel-insurance.html">Travel Insurance</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Investments <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="sav-in.html">Savings & Investments</a>
+                                <a href="pension.html">Pensions</a>
+                                <a href="stock.html">Stocks & Shares</a>
+                            </div>
+                        </li>
+                            <li><a href="busi-bank.html">Business Banking</a></li>
+                        <li class="dropdown">
+                            <a href="help.html">Help & Support <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="on-bank.html">Online Banking Help</a>
+                                <a href="sec-cen.html">Security Centre</a>
+                             
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="dig-bank.html" class="btn">Digital Banking</a>
+                    <a href="register.html" class="btn btn-secondary">Register</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Protect Your Home and Everything In It</h2>
+            <p>Comprehensive home insurance with flexible coverage options to protect your property and belongings. Get peace of mind with Ulster Bank.</p>
+            <div class="hero-buttons">
+                <button class="btn" onclick="document.getElementById('quote-form').scrollIntoView({behavior: 'smooth'})">Get a Quote</button>
+                <button class="btn btn-secondary">Existing Customer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Quote Form -->
+    <section class="quote-form" id="quote-form">
+        <div class="container">
+            <div class="form-container">
+                <h2>Get Your Home Insurance Quote</h2>
+                <form id="insuranceQuoteForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postcode">Postcode</label>
+                            <input type="text" id="postcode" placeholder="Enter your postcode" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="propertyType">Property Type</label>
+                            <select id="propertyType" required>
+                                <option value="">Select property type</option>
+                                <option value="detached">Detached House</option>
+                                <option value="semi-detached">Semi-Detached House</option>
+                                <option value="terraced">Terraced House</option>
+                                <option value="flat">Flat/Apartment</option>
+                                <option value="bungalow">Bungalow</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bedrooms">Number of Bedrooms</label>
+                            <select id="bedrooms" required>
+                                <option value="">Select bedrooms</option>
+                                <option value="1">1 Bedroom</option>
+                                <option value="2">2 Bedrooms</option>
+                                <option value="3">3 Bedrooms</option>
+                                <option value="4">4 Bedrooms</option>
+                                <option value="5">5+ Bedrooms</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="buildYear">Year Built</label>
+                            <input type="number" id="buildYear" min="1800" max="2024" placeholder="e.g. 1995" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyValue">Estimated Property Value</label>
+                            <input type="number" id="propertyValue" placeholder="e.g. 250000" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coverageType">Coverage Type</label>
+                            <select id="coverageType" required>
+                                <option value="">Select coverage type</option>
+                                <option value="buildings">Buildings Only</option>
+                                <option value="contents">Contents Only</option>
+                                <option value="combined">Buildings & Contents</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="excess">Voluntary Excess</label>
+                            <select id="excess" required>
+                                <option value="">Select excess amount</option>
+                                <option value="100">£100</option>
+                                <option value="250">£250</option>
+                                <option value="500">£500</option>
+                                <option value="750">£750</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn">Get Quote</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Features -->
+    <section class="insurance-features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Ulster Bank Home Insurance?</h2>
+                <p>Our home insurance offers comprehensive protection with benefits designed to give you peace of mind.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Buildings Insurance</h3>
+                        <p>Protection for the structure of your home including walls, roof, and permanent fixtures against damage from fire, flood, storms, and more.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Contents Insurance</h3>
+                        <p>Coverage for your personal belongings including furniture, electronics, and valuables against theft, fire, and accidental damage.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>24/7 Emergency Support</h3>
+                        <p>Round-the-clock assistance for emergencies like burst pipes, storm damage, or break-ins with our dedicated claims team.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Alternative Accommodation</h3>
+                        <p>If your home becomes uninhabitable due to an insured event, we'll cover the cost of temporary accommodation.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Easy Policy Management</h3>
+                        <p>Manage your policy, make changes, and access documents anytime through our online portal or mobile app.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>No Claims Discount</h3>
+                        <p>Build up your no claims discount year after year, with protection options available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Options -->
+    <section class="coverage-options">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Coverage Options</h2>
+                <p>Choose the level of protection that's right for your home and belongings</p>
+            </div>
+            <div class="coverage-tabs">
+                <button class="tab-btn active" data-tab="buildings">Buildings Insurance</button>
+                <button class="tab-btn" data-tab="contents">Contents Insurance</button>
+                <button class="tab-btn" data-tab="combined">Combined Policy</button>
+            </div>
+            <div class="tab-content active" id="buildings">
+                <div class="coverage-details">
+                    <div class="coverage-item">
+                        <h3>Standard Buildings</h3>
+                        <p>Essential protection for the structure of your home</p>
+                        <div class="price">From £15/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Fire, explosion, and smoke damage</li>
+                            <li>Storm and flood damage</li>
+                            <li>Burst pipes and water leakage</li>
+                            <li>Theft or attempted theft</li>
+                            <li>Vandalism and malicious damage</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Enhanced Buildings</h3>
+                        <p>Extra protection for complete peace of mind</p>
+                        <div class="price">From £25/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>All Standard features</li>
+                            <li>Subsidence coverage</li>
+                            <li>Landslip and heave</li>
+                            <li>Accidental damage to fixtures</li>
+                            <li>Trace and access cover</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Premium Buildings</h3>
+                        <p>Our highest level of structural protection</p>
+                        <div class="price">From £35/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>All Enhanced features</li>
+                            <li>Home emergency cover</li>
+                            <li>Legal expenses cover</li>
+                            <li>Garden and outbuildings</li>
+                            <li>Alternative accommodation</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="contents">
+                <div class="coverage-details">
+                    <div class="coverage-item">
+                        <h3>Standard Contents</h3>
+                        <p>Essential protection for your personal belongings</p>
+                        <div class="price">From £12/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>Fire, explosion, and smoke damage</li>
+                            <li>Theft or attempted theft</li>
+                            <li>Storm and flood damage</li>
+                            <li>Burst pipes and water leakage</li>
+                            <li>Vandalism and malicious damage</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Enhanced Contents</h3>
+                        <p>Extra protection for your valuables</p>
+                        <div class="price">From £20/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>All Standard features</li>
+                            <li>Accidental damage cover</li>
+                            <li>Personal possessions away from home</li>
+                            <li>Freezer food cover</li>
+                            <li>Pedal cycle cover</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Premium Contents</h3>
+                        <p>Comprehensive protection for all your belongings</p>
+                        <div class="price">From £30/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>All Enhanced features</li>
+                            <li>High-value items cover</li>
+                            <li>Legal expenses cover</li>
+                            <li>Home emergency cover</li>
+                            <li>Alternative accommodation</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="combined">
+                <div class="coverage-details">
+                    <div class="coverage-item">
+                        <h3>Standard Combined</h3>
+                        <p>Essential protection for both buildings and contents</p>
+                        <div class="price">From £25/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>All Standard Buildings features</li>
+                            <li>All Standard Contents features</li>
+                            <li>Single policy convenience</li>
+                            <li>Combined discount</li>
+                            <li>Single excess for claims</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Enhanced Combined</h3>
+                        <p>Comprehensive protection for complete peace of mind</p>
+                        <div class="price">From £40/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>All Enhanced Buildings features</li>
+                            <li>All Enhanced Contents features</li>
+                            <li>Home emergency cover</li>
+                            <li>Legal expenses cover</li>
+                            <li>Alternative accommodation</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                    <div class="coverage-item">
+                        <h3>Premium Combined</h3>
+                        <p>Our highest level of home protection</p>
+                        <div class="price">From £55/month</div>
+                        <ul style="text-align: left; margin-bottom: 20px;">
+                            <li>All Premium Buildings features</li>
+                            <li>All Premium Contents features</li>
+                            <li>Increased cover limits</li>
+                            <li>No claims discount protection</li>
+                            <li>24/7 premium claims service</li>
+                        </ul>
+                        <button class="btn">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Coverage Options -->
+    <section class="additional-coverage">
+        <div class="container">
+            <div class="section-title">
+                <h2>Additional Coverage Options</h2>
+                <p>Customize your policy with these optional extras</p>
+            </div>
+            <div class="coverage-grid">
+                <div class="coverage-card">
+                    <h3><i class="fas fa-laptop-house"></i> Home Emergency Cover</h3>
+                    <p>24/7 assistance for emergencies like burst pipes, roof damage, or electrical failure. Includes call-out, labour, and parts up to specified limits.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £3/month</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-gavel"></i> Legal Expenses Cover</h3>
+                    <p>Protection for legal disputes related to your property, including boundary disputes, property damage claims, and employment disputes if you work from home.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £2/month</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-bicycle"></i> Pedal Cycle Cover</h3>
+                    <p>Coverage for your bicycles against theft or damage, whether at home or away from home. Includes accessories and optional cover for racing events.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £1/month</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-mobile-alt"></i> Personal Possessions Cover</h3>
+                    <p>Protection for your valuable items like smartphones, tablets, jewelry, and cameras when you take them outside your home.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £4/month</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-umbrella"></i> Accidental Damage Cover</h3>
+                    <p>Protection against accidental damage to your buildings, contents, or personal possessions, such as spills on carpets or broken windows.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £5/month</p>
+                </div>
+                <div class="coverage-card">
+                    <h3><i class="fas fa-home"></i> Landlord Insurance</h3>
+                    <p>Specialist coverage if you rent out your property, including landlord liability, loss of rent, and contents provided as part of the rental.</p>
+                    <p style="margin-top: 15px; font-weight: bold;">Add from £8/month</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Hear from customers who have experienced our home insurance service</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "When a storm damaged our roof last winter, Ulster Bank's claims process was incredibly efficient. They arranged temporary accommodation while repairs were done and handled everything professionally. I couldn't be more impressed with their service."
+                    </div>
+                    <div class="testimonial-author">- Michael O'Connor, Derry</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our home insurance</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What's the difference between buildings and contents insurance?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Buildings insurance covers the physical structure of your home (walls, roof, floors) and permanent fixtures (bathrooms, kitchens). Contents insurance covers your personal belongings inside the home (furniture, electronics, clothing). Many homeowners choose a combined policy for complete protection.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How much buildings insurance do I need?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Your buildings insurance should cover the full rebuild cost of your home, not its market value. The rebuild cost is typically lower than the market value and can be estimated using tools on our website or by consulting a surveyor. We can help you determine the appropriate level of cover.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How is the contents sum insured calculated?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        The contents sum insured should represent the total value of all your possessions in your home. This includes furniture, appliances, electronics, clothing, and other personal items. We provide a contents calculator on our website to help you estimate this amount accurately.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are my home office equipment and work tools covered?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Standard home insurance typically includes some cover for office equipment used for administrative purposes. However, if you run a business from home or have specialized equipment, you may need additional business equipment cover. Contact us to discuss your specific needs.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What should I do if I need to make a claim?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        If you need to make a claim, contact us as soon as possible. For emergencies like burst pipes or storm damage, we have a 24/7 helpline. Take photos of any damage, don't dispose of damaged items until we've assessed them, and keep receipts for any emergency repairs. Our claims team will guide you through the entire process.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <h2>Save Up To 25% When You Combine Home and Car Insurance</h2>
+            <p>Get a quote for both policies and enjoy significant savings with our multi-policy discount</p>
+            <button class="btn btn-secondary" style="margin-top: 20px;">Get Combined Quote</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Banking</h3>
+                    <ul class="footer-links">
+                        <li><a href="current-accounts.html">Current Accounts</a></li>
+                        <li><a href="savings-accounts.html">Savings Accounts</a></li>
+                        <li><a href="credit-card.html">Credit Cards</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="mortgages.html">Mortgages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Insurance</h3>
+                    <ul class="footer-links">
+                        <li><a href="car-insurance.html">Car Insurance</a></li>
+                        <li><a href="home-insurance.html" class="active">Home Insurance</a></li>
+                        <li><a href="life-insurance.html">Life Insurance</a></li>
+                        <li><a href="travel-insurance.html">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li><a href="#">Online Banking Help</a></li>
+                        <li><a href="#">Security Centre</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ulster Bank. All rights reserved. Ulster Bank is a trading name of Ulster Bank Ireland DAC. Ulster Bank Ireland DAC is regulated by the Central Bank of Ireland.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Digital Banking Login</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Log In</button>
+            </form>
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Not registered? <a href="#">Register for Digital Banking</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Login Modal
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+
+        loginBtn.addEventListener('click', function() {
+            loginModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, this would send the login credentials to a server
+            alert('Login functionality would be implemented here');
+            loginModal.style.display = 'none';
+        });
+
+        // Mobile dropdown functionality
+        document.querySelectorAll('.dropdown > a').forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const content = this.nextElementSibling;
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+
+        // Tab functionality for coverage options
+        document.querySelectorAll('.tab-btn').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab-btn').forEach(function(t) {
+                    t.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-content').forEach(function(c) {
+                    c.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(function(ans) {
+                    ans.classList.remove('active');
+                });
+                
+                // If the clicked answer wasn't active, open it
+                if (!isActive) {
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Insurance Quote Form Submission
+        document.getElementById('insuranceQuoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, this would send the quote request to a server
+            alert('Thank you for your home insurance quote request. We will contact you shortly with your personalized quote.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

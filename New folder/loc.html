@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Locator | Ulster Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6E0C89;
+            --secondary-color: #E6007E;
+            --accent-color: #FF9900;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --text-color: #333333;
+            --white: #FFFFFF;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --gray-dark: #6c757d;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c9006b;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 8px;
+            top: 100%;
+            left: 0;
+            padding: 10px 0;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Branch Locator Hero */
+        .branch-hero {
+            background: linear-gradient(rgba(110, 12, 137, 0.85), rgba(110, 12, 137, 0.85)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .branch-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .branch-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Search Section */
+        .search-section {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+        
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .search-box {
+            display: flex;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 1.1rem;
+            outline: none;
+        }
+        
+        .search-box button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .search-box button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .filter-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: var(--gray-light);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Branch Results */
+        .branch-results {
+            padding: 60px 0;
+            background-color: var(--gray-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+        
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .branch-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .branch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .branch-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 20px;
+            position: relative;
+        }
+        
+        .branch-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .branch-type {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .branch-content {
+            padding: 25px;
+        }
+        
+        .branch-info {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .branch-info i {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .branch-info p {
+            margin-bottom: 5px;
+        }
+        
+        .branch-hours {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-medium);
+        }
+        
+        .branch-hours h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .branch-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .branch-actions .btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .map-container {
+            height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .map-placeholder {
+            text-align: center;
+            color: var(--gray-dark);
+        }
+        
+        .map-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: var(--gray-light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            text-align: center;
+            padding: 40px 30px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .service-card p {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .auth-buttons {
+                display: none;
+            }
+            
+            .branch-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .branch-hero p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .branches-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+            
+            .search-box input {
+                padding: 15px;
+            }
+            
+            .search-box button {
+                padding: 15px;
+            }
+            
+            .branch-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .map-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span>Contact us: 0800 231 232</span>
+                </div>
+                <div class="top-bar-links">
+                    <a href="on-bank.html">Help & Support</a>
+                    <a href="loc.html">Branch Locator</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <!-- Ulster Bank Logo -->
+                    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="25" r="25" fill="#6E0C89"/>
+                        <path d="M15 15H35V35H15V15Z" fill="white" opacity="0.9"/>
+                        <path d="M25 10L35 15H15L25 10Z" fill="white" opacity="0.9"/>
+                        <path d="M25 40L15 35H35L25 40Z" fill="white" opacity="0.9"/>
+                        <path d="M15 15L25 10V40L15 35V15Z" fill="white" opacity="0.7"/>
+                        <path d="M35 15L25 10V40L35 35V15Z" fill="white" opacity="0.7"/>
+                    </svg>
+                    <h1>Ulster Bank</h1>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Banking <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="current-accounts.html">Current Accounts</a>
+                                <a href="savings-accounts.html">Savings Accounts</a>
+                                <a href="credit-card.html">Credit Cards</a>
+                                <a href="loans.html">Loans</a>
+                                <a href="mortgages.html">Mortgages</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Insurance <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="car-insurance.html">Car Insurance</a>
+                                <a href="home-insurance.html">Home Insurance</a>
+                                <a href="life-insurance.html">Life Insurance</a>
+                                <a href="travel-insurance.html">Travel Insurance</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Investments <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="sav-in.html">Savings & Investments</a>
+                                <a href="pension.html">Pensions</a>
+                                <a href="stock.html">Stocks & Shares</a>
+                            </div>
+                        </li>
+                        <li><a href="busi-bank.html">Business Banking</a></li>
+                        <li class="dropdown">
+                            <a href="help.html">Help & Support <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown-content">
+                                <a href="on-bank.html">Online Banking Help</a>
+                                <a href="sec-cen.html">Security Centre</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="dig-bank.html" class="btn">Digital Banking</a>
+                    <a href="register.html" class="btn btn-secondary">Register</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Branch Locator Hero -->
+    <section class="branch-hero">
+        <div class="container">
+            <h1>Find a Branch</h1>
+            <p>Locate your nearest Ulster Bank branch with our comprehensive branch finder. We have over 100 branches across the UK to serve you.</p>
+            <a href="#search" class="btn btn-secondary">Find Nearest Branch</a>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section" id="search">
+        <div class="container">
+            <div class="search-container">
+                <h2>Search for Branches</h2>
+                <p>Enter your postcode, city, or address to find branches near you</p>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Enter postcode, city, or address...">
+                    <button><i class="fas fa-search"></i> Search</button>
+                </div>
+                
+                <div class="filter-options">
+                    <button class="filter-btn active">All Branches</button>
+                    <button class="filter-btn">With ATM</button>
+                    <button class="filter-btn">Open Saturday</button>
+                    <button class="filter-btn">Disabled Access</button>
+                    <button class="filter-btn">Business Services</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branch Results -->
+    <section class="branch-results">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Branches</h2>
+                <p>Discover Ulster Bank branches across the United Kingdom</p>
+            </div>
+            
+            <div class="branches-grid" id="branchesList">
+                <!-- Branch cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Branch Locations</h2>
+                <p>View all our branch locations on the map below</p>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Interactive Branch Map</h3>
+                    <p>In a real implementation, this would display an interactive map with all branch locations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Branch Services</h2>
+                <p>Our branches offer a wide range of services to meet your banking needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-money-check-alt"></i>
+                    <h3>Counter Services</h3>
+                    <p>Deposit and withdraw cash, make payments, and manage your accounts with our friendly staff.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-university"></i>
+                    <h3>Financial Advice</h3>
+                    <p>Get expert advice on mortgages, savings, investments, and insurance from our specialists.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Business Banking</h3>
+                    <p>Dedicated services for business customers including loans, merchant services, and cash management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Banking</h3>
+                    <ul class="footer-links">
+                        <li><a href="current-accounts.html">Current Accounts</a></li>
+                        <li><a href="savings-accounts.html">Savings Accounts</a></li>
+                        <li><a href="credit-card.html">Credit Cards</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="mortgages.html">Mortgages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Insurance</h3>
+                    <ul class="footer-links">
+                        <li><a href="car-insurance.html">Car Insurance</a></li>
+                        <li><a href="home-insurance.html">Home Insurance</a></li>
+                        <li><a href="life-insurance.html">Life Insurance</a></li>
+                        <li><a href="travel-insurance.html">Travel Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li><a href="on-bank.html">Online Banking Help</a></li>
+                        <li><a href="sec-cen.html">Security Centre</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ulster Bank. All rights reserved. Ulster Bank is a trading name of Ulster Bank Ireland DAC. Ulster Bank Ireland DAC is regulated by the Central Bank of Ireland.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Branch Data
+        const branches = [
+            {
+                id: 1,
+                name: "London City Branch",
+                address: "25 Lombard Street, London, EC3V 9BA",
+                phone: "020 7123 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "10:00 - 14:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 2,
+                name: "Manchester Central",
+                address: "42 Deansgate, Manchester, M3 2AS",
+                phone: "0161 832 4567",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 3,
+                name: "Belfast City Centre",
+                address: "12 Royal Avenue, Belfast, BT1 1DD",
+                phone: "028 9024 5678",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 12:30",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday", "Disabled Access"],
+                type: "Full Service"
+            },
+            {
+                id: 4,
+                name: "Edinburgh Princes Street",
+                address: "88 Princes Street, Edinburgh, EH2 2DF",
+                phone: "0131 556 7890",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:00 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 5,
+                name: "Cardiff Queen Street",
+                address: "35 Queen Street, Cardiff, CF10 2AF",
+                phone: "029 2034 5678",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 12:30",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 6,
+                name: "Leeds City Centre",
+                address: "12 Briggate, Leeds, LS1 6LY",
+                phone: "0113 243 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 7,
+                name: "Bristol Broadmead",
+                address: "27 Broadmead, Bristol, BS1 3HA",
+                phone: "0117 927 4567",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 8,
+                name: "Glasgow Sauchiehall Street",
+                address: "145 Sauchiehall Street, Glasgow, G2 3EW",
+                phone: "0141 332 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 9,
+                name: "Liverpool City Centre",
+                address: "18 Lord Street, Liverpool, L2 9SA",
+                phone: "0151 707 4567",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 10,
+                name: "Newcastle Upon Tyne",
+                address: "32 Northumberland Street, Newcastle, NE1 7DF",
+                phone: "0191 232 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 11,
+                name: "Nottingham City Centre",
+                address: "12 Clumber Street, Nottingham, NG1 3ED",
+                phone: "0115 948 4567",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 12,
+                name: "Sheffield City Centre",
+                address: "24 Fargate, Sheffield, S1 2HD",
+                phone: "0114 272 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 13,
+                name: "Leicester City Centre",
+                address: "17 Gallowtree Gate, Leicester, LE1 5AD",
+                phone: "0116 262 4567",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 14,
+                name: "Coventry City Centre",
+                address: "22 Smithford Way, Coventry, CV1 1FY",
+                phone: "024 7652 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 15,
+                name: "Southampton City Centre",
+                address: "14 Above Bar Street, Southampton, SO14 7FN",
+                phone: "023 8023 4567",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 16,
+                name: "Portsmouth Commercial Road",
+                address: "56 Commercial Road, Portsmouth, PO1 4BJ",
+                phone: "023 9273 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 17,
+                name: "Brighton Churchill Square",
+                address: "42 Western Road, Brighton, BN1 2HA",
+                phone: "01273 723 4567",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 18,
+                name: "Reading Broad Street",
+                address: "18 Broad Street, Reading, RG1 2BH",
+                phone: "0118 959 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 19,
+                name: "Oxford Cornmarket Street",
+                address: "25 Cornmarket Street, Oxford, OX1 3EX",
+                phone: "01865 242 4567",
+                hours: {
+                    mon: "09:00 - 17:30",
+                    tue: "09:00 - 17:30",
+                    wed: "09:30 - 17:30",
+                    thu: "09:00 - 17:30",
+                    fri: "09:00 - 17:30",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Disabled Access", "Saturday"],
+                type: "Full Service"
+            },
+            {
+                id: 20,
+                name: "Cambridge Sidney Street",
+                address: "17 Sidney Street, Cambridge, CB2 3HG",
+                phone: "01223 355 4567",
+                hours: {
+                    mon: "09:00 - 17:00",
+                    tue: "09:00 - 17:00",
+                    wed: "09:30 - 17:00",
+                    thu: "09:00 - 17:00",
+                    fri: "09:00 - 17:00",
+                    sat: "09:30 - 13:00",
+                    sun: "Closed"
+                },
+                services: ["ATM", "Business", "Saturday"],
+                type: "Full Service"
+            }
+        ];
+
+        // Function to generate branch cards
+        function generateBranchCards() {
+            const branchesList = document.getElementById('branchesList');
+            branchesList.innerHTML = '';
+            
+            branches.forEach(branch => {
+                const branchCard = document.createElement('div');
+                branchCard.className = 'branch-card';
+                
+                // Generate services badges
+                let servicesHTML = '';
+                if (branch.services.includes('ATM')) {
+                    servicesHTML += '<span class="branch-type">ATM Available</span> ';
+                }
+                if (branch.services.includes('Saturday')) {
+                    servicesHTML += '<span class="branch-type">Open Saturday</span> ';
+                }
+                if (branch.services.includes('Disabled Access')) {
+                    servicesHTML += '<span class="branch-type">Disabled Access</span> ';
+                }
+                if (branch.services.includes('Business')) {
+                    servicesHTML += '<span class="branch-type">Business Services</span> ';
+                }
+                
+                branchCard.innerHTML = `
+                    <div class="branch-header">
+                        <h3>${branch.name}</h3>
+                        <p>${branch.type}</p>
+                        ${servicesHTML}
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p><strong>Address:</strong></p>
+                                <p>${branch.address}</p>
+                            </div>
+                        </div>
+                        <div class="branch-info">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p><strong>Phone:</strong></p>
+                                <p>${branch.phone}</p>
+                            </div>
+                        </div>
+                        <div class="branch-hours">
+                            <h4>Opening Hours</h4>
+                            <ul class="hours-list">
+                                <li><span>Monday:</span> <span>${branch.hours.mon}</span></li>
+                                <li><span>Tuesday:</span> <span>${branch.hours.tue}</span></li>
+                                <li><span>Wednesday:</span> <span>${branch.hours.wed}</span></li>
+                                <li><span>Thursday:</span> <span>${branch.hours.thu}</span></li>
+                                <li><span>Friday:</span> <span>${branch.hours.fri}</span></li>
+                                <li><span>Saturday:</span> <span>${branch.hours.sat}</span></li>
+                                <li><span>Sunday:</span> <span>${branch.hours.sun}</span></li>
+                            </ul>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="#" class="btn">Get Directions</a>
+                            <a href="#" class="btn btn-outline">Call Branch</a>
+                        </div>
+                    </div>
+                `;
+                
+                branchesList.appendChild(branchCard);
+            });
+        }
+
+        // Initialize branch cards
+        generateBranchCards();
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // In a real implementation, this would filter the branches
+                // For this demo, we'll just regenerate all branches
+                generateBranchCards();
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.search-box button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-box input').value.toLowerCase();
+            
+            if (searchTerm) {
+                // In a real implementation, this would search through branches
+                // For this demo, we'll just show an alert
+                alert(`Searching for branches near: ${searchTerm}`);
+            }
+        });
+    </script>
+</body>
+</html>
